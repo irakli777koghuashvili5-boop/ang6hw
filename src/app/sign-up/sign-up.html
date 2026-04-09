@@ -11,41 +11,41 @@
     <form id="form-register" (submit)="$event.preventDefault()">
       <div class="form-row">
         <div class="field-group">
-          <input type="text" id="reg-fname" placeholder=" ">
+          <input [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" type="text" id="reg-fname" placeholder=" ">
           <label for="reg-fname">First Name</label>
         </div>
         <div class="field-group">
-          <input type="text" id="reg-lname" placeholder=" ">
+          <input  [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" type="text" id="reg-lname" placeholder=" ">
           <label for="reg-lname">Last Name</label>
         </div>
       </div>
 
       <div class="field-group">
-        <input type="email" id="reg-email" placeholder=" ">
+        <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" id="reg-email" placeholder=" ">
         <label for="reg-email">Email</label>
       </div>
 
       <div class="field-group password-group">
-        <input id="reg-pass" placeholder=" ">
+        <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" id="reg-pass" placeholder=" ">
         <label for="reg-pass">Password</label>
         <span class="eye-icon" ></span>
       </div>
 
       <div class="form-row align-bottom">
         <div class="field-group flex-1">
-          <input type="number" id="reg-age" placeholder=" ">
+          <input [(ngModel)]="age" [ngModelOptions]="{standalone: true}" type="number" id="reg-age" placeholder=" ">
           <label for="reg-age">Age</label>
         </div>
         
         <div class="gender-selector" id="group-gender">
           <div class="gender-chips">
-            <input type="radio" name="gender" id="male" checked>
+            <input type="radio" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}" value="MALE" name="gender" id="male" checked>
             <label for="male">Male</label>
             
-            <input type="radio" name="gender" id="female">
+            <input type="radio" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}" value="FEMALE" name="gender" id="female">
             <label for="female">Female</label>
             
-            <input type="radio" name="gender" id="other">
+            <input type="radio"  [(ngModel)]="gender" [ngModelOptions]="{standalone: true}"  value="OTHER" name="gender" id="other">
             <label for="other">Other</label>
           </div>
           <span class="field-label">Gender</span>
@@ -53,22 +53,22 @@
       </div>
 
       <div class="field-group">
-        <input type="text" id="reg-address" placeholder=" ">
-        <label for="reg-address">Address</label>
+        <input [(ngModel)]="address" [ngModelOptions]="{standalone: true}" type="text" id="reg-address" placeholder=" ">
+        <label for="reg-address">address</label>
       </div>
 
       <div class="form-row">
         <div class="field-group flex-2">
-          <input type="tel" id="reg-phone" placeholder=" ">
+          <input [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" type="tel" id="reg-phone" placeholder=" ">
           <label for="reg-phone">Phone</label>
         </div>
         <div class="field-group flex-1">
-          <input type="text" id="reg-zip" placeholder=" ">
+          <input [(ngModel)]="zipcode" [ngModelOptions]="{standalone: true}" type="text" id="reg-zip" placeholder=" ">
           <label for="reg-zip">Zipcode</label>
         </div>
       </div>
 
-      <button type="submit" class="btn-create" id="btn-submit-register">
+      <button  (click)="onCreateAccount()" type="submit" class="btn-create" id="btn-submit-register">
         Create Account
       </button>
     </form>

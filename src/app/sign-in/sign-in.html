@@ -8,13 +8,17 @@
       </p>
     </header>
 
-    <form id="form-login">
+    <form id="form-login"  (submit)="$event.preventDefault()">
       <div class="field-group" id="group-email">
-        <input type="email" id="input-email" placeholder="Email address" name="email">
+        <input [(ngModel)]="email" 
+          [ngModelOptions]="{standalone: true}" type="email" id="input-email" placeholder="Email address" name="email">
       </div>
 
       <div class="field-group password-group" id="group-password">
         <input 
+          [(ngModel)]="password" 
+          [ngModelOptions]="{standalone: true}" 
+          type="password" 
           id="input-pass" 
           placeholder="Password" 
           name="password">
@@ -31,7 +35,7 @@
         <a href="#" class="forgot-link" id="link-forgot">Forgot password?</a>
       </div>
 
-      <button type="submit" class="btn-signin" id="btn-submit">Sign In</button>
+      <button type="submit" (click)="onClickSignIn()" class="btn-signin" id="btn-submit">Sign In</button>
     </form>
 
     <div class="divider" id="separator">

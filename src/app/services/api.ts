@@ -11,4 +11,6 @@ export class Api {
   getAll(url: string) {
     return this.http.get<Product[]>(this.httpBase + url);
   }
-}
+  postAll(url: string, body : any) {
+    return this.http.post(this.httpBase + url, body)
+}}
