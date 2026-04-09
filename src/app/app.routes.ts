@@ -20,6 +20,14 @@ export const routes: Routes = [
   
   },
   {
+    path: `sign-in`,
+    loadComponent: () =>import('./sign-in/sign-in').then((m) => m.SignIn),
+  },
+  {
+    path: `sign-up`,
+    loadComponent: () =>import('./sign-up/sign-up').then((m) => m.SignUp),
+  },
+  {
     path:'**',
     loadComponent: () =>import('./error/error').then((m) => m.Error),
   

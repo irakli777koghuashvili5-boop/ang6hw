@@ -2,10 +2,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Api } from '../services/api';
-import { Product } from '../model/model';
 import { CommonModule } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-details',
@@ -15,8 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class Details {
   selectedId: number = 0;
-productArr: any[] = [];
-aProductArr: Product[] = [];
+  productArr: any[] = [];
+  ratingsArr: any[] = [];
+  images: string[] = [];
+
+  currentIndex: number = 0;
 
   constructor(
     private api: Api,
@@ -29,20 +29,33 @@ aProductArr: Product[] = [];
     });
   }
 
+  ngOnInit() {
+    this.api.getAll(`shop/products/id/${this.selectedId}`).subscribe((res: any) => {
+      this.productArr = Object.entries(res).map(([_, value]) => value as any);
+      this.ratingsArr = res.ratings || [];
+      this.images = res.images || [];
 
-    ngOnInit() {
-  this.api.getAll(`shop/products/id/${this.selectedId}`).subscribe((res: any) => {
+      console.log('Product array:', this.productArr);
+      console.log('Ratings:', this.ratingsArr);
+      console.log('Images:', this.images);
 
-    this.productArr = Object.entries(res).map(([key, value]) => value as any);
-    this.aProductArr = res
+      this.cdr.detectChanges();
+    });
+  }
 
-    console.log('Converted array:', this.productArr);
-    console.log(this.aProductArr);
-    
+  get currentImage(): string {
+    return this.images[this.currentIndex];
+  }
 
-    this.cdr.detectChanges();
-  });
-}
+  nextImage(): void {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
 
+  prevImage(): void {
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+  }
 
+  setIndex(index: number): void {
+    this.currentIndex = index;
+  }
 }

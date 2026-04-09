@@ -1,0 +1,281 @@
+$coral: #f65a6f;
+$dark: #1a1f36;
+$muted: #697386;
+$border: #dcdfe6;
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .auth-card {
+    background: #fff;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+
+    h1 { font-size: 2.2rem; margin-bottom: 8px; color: $dark; font-weight: 700; }
+    
+    .subtitle { 
+      font-size: 0.95rem; color: $muted; margin-bottom: 35px;
+      a { color: $muted; text-decoration: underline; font-weight: 500; }
+    }
+  }
+}
+
+.field-group {
+  margin-bottom: 15px;
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid $border;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+
+    &:focus { border-color: $coral; outline: none; }
+  }
+
+  &.password-group .eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.5;
+  }
+}
+
+.actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 25px;
+  font-size: 0.9rem;
+  color: $muted;
+
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    input { display: none; }
+    .box { width: 18px; height: 18px; border: 1px solid $border; border-radius: 4px; }
+    input:checked + .box { background: $coral; border-color: $coral; }
+    
+  }
+
+  .forgot-link { text-decoration: none; color: $muted; }
+}
+
+.btn-signin {
+  width: 100%;
+  background: $coral;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 30px;
+  &:hover { filter: brightness(0.95); }
+}
+
+.divider {
+  position: relative;
+  margin-bottom: 25px;
+  &:after {
+    content: ""; position: absolute; top: 50%; left: 0; width: 100%;
+    height: 1px; background: #eee; z-index: 1;
+  }
+  span { background: #fff; padding: 0 15px; position: relative; z-index: 2; color: $muted; font-size: 0.85rem; }
+}
+
+.social-grid {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+
+  .social-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid $border;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    &:hover { background: #f9f9f9; }
+    .brand-icon { font-weight: bold; }
+  }
+}
+
+.help-link {
+    color: $muted;
+    
+    font-size: 0.9rem;
+     text-decoration: none;
+     }
+/* ... Previous styles here ... */
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f9fafb; // Added a slight background for contrast
+
+  .auth-card {
+    background: #fff;
+    width: 100%;
+    max-width: 420px; // Maximum width on desktop
+    padding: 40px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    
+    // Smooth transition for resizing
+    transition: all 0.3s ease-in-out; 
+  }
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 10px; // Less padding on mobile edges
+  }
+
+  .auth-card {
+    padding: 30px 20px; // Tighter padding inside the card
+    border-radius: 8px;
+    box-shadow: none; // Often cleaner to remove shadow on small mobile screens
+    
+    h1 {
+      font-size: 1.8rem; // Smaller title for small screens
+    }
+  }
+
+  .social-grid {
+    flex-direction: column; // Stack Google, Facebook, Apple vertically
+    gap: 8px;
+
+    .social-item {
+      width: 100%; // Buttons take full width
+      padding: 14px; // Larger touch targets for thumbs
+    }
+  }
+
+  .actions-row {
+    flex-direction: column; // Stack "Remember me" and "Forgot password"
+    align-items: flex-start;
+    gap: 15px;
+    
+    .forgot-link {
+      margin-left: 26px; // Align with the text of the checkbox
+    }
+  }
+}
+
+// Tablet and Small Desktop optimization
+@media (min-width: 481px) and (max-width: 768px) {
+  .auth-card {
+    max-width: 90%; // Allow card to breathe on tablets
+  }
+}
+
+/* --- Variables --- */
+$brand-red: #f65a6f;
+$brand-red-dark: #d43f52;
+$shadow-glow: rgba(246, 90, 111, 0.4);
+$shadow-heavy: rgba(246, 90, 111, 0.6);
+
+/* 1. Primary Sign-In Button: High Glow */
+#btn-submit {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+
+  &:hover {
+    background-color: $brand-red-dark;
+    transform: translateY(-3px);
+    /* Multi-layered shadow for a "glowing" effect */
+    box-shadow: 
+      0 10px 20px $shadow-glow, 
+      0 6px 6px rgba(0, 0, 0, 0.1),
+      0 0 0 4px rgba(246, 90, 111, 0.1); 
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px $shadow-heavy;
+  }
+}
+
+/* 2. Social Buttons: Red Border & Shadow Hover */
+.social-item {
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: $brand-red;
+    color: $brand-red;
+    background-color: #fff5f6; // Very light red tint
+    /* Subtle red glow to indicate focus */
+    box-shadow: 0 5px 15px rgba(246, 90, 111, 0.15);
+    
+    .brand-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* 3. Input Fields: Intense Focus Glow */
+#input-email, #input-pass {
+  transition: all 0.2s ease;
+
+  &:focus {
+    border-color: $brand-red;
+    outline: none;
+    /* Red glowing ring */
+    box-shadow: 0 0 0 4px rgba(246, 90, 111, 0.25);
+  }
+  
+  &:hover:not(:focus) {
+    border-color: $brand-red;
+  }
+}
+
+/* 4. Links: Bold Underline & Red Glow */
+#link-create, #link-forgot, #link-help {
+  position: relative;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $brand-red;
+    text-shadow: 0 0 8px rgba(246, 90, 111, 0.3);
+    text-decoration: underline;
+  }
+}
+
+/* 5. Checkbox Interaction */
+#label-remember {
+  &:hover {
+    color: $brand-red;
+    .box {
+      border-color: $brand-red;
+      box-shadow: 0 0 8px rgba(246, 90, 111, 0.2);
+    }
+  }
+}
+

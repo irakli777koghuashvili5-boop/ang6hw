@@ -1,0 +1,58 @@
+<div class="auth-wrapper" id="login-container">
+  <div class="auth-card" id="card-main">
+    
+    <header id="card-header">
+      <h1 id="title-welcome">Welcome back</h1>
+      <p class="subtitle" id="text-signup-prompt">
+        Don't have an account? <a routerLink="/sign-up" id="link-create">Create account</a>
+      </p>
+    </header>
+
+    <form id="form-login">
+      <div class="field-group" id="group-email">
+        <input type="email" id="input-email" placeholder="Email address" name="email">
+      </div>
+
+      <div class="field-group password-group" id="group-password">
+        <input 
+          id="input-pass" 
+          placeholder="Password" 
+          name="password">
+        <span class="eye-icon" id="icon-toggle" >
+        </span>
+      </div>
+
+      <div class="actions-row" id="row-options">
+        <label class="custom-checkbox" id="label-remember">
+          <input type="checkbox" id="check-remember">
+          <span class="box"></span>
+          Remember me for 7 days
+        </label>
+        <a href="#" class="forgot-link" id="link-forgot">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-signin" id="btn-submit">Sign In</button>
+    </form>
+
+    <div class="divider" id="separator">
+      <span>or continue with</span>
+    </div>
+
+    <div class="social-grid" id="grid-social">
+      <button class="social-item" id="btn-google">
+        <span class="brand-icon"><i class="fa-brands fa-google"></i></span> Google
+      </button>
+      <button class="social-item" id="btn-facebook">
+        <span class="brand-icon"><i class="fa-brands fa-facebook"></i></span> Facebook
+      </button>
+      <button class="social-item" id="btn-apple">
+        <span class="brand-icon"><i class="fa-brands fa-apple"></i></span> Apple
+      </button>
+    </div>
+
+    <footer id="card-footer">
+      <a href="#" class="help-link" id="link-help">Need help?</a>
+    </footer>
+
+  </div>
+</div>

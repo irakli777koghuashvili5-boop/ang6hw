@@ -108,7 +108,7 @@ giveFilter() {
     }
   });
 
-  console.log(this.selectedCategories);
+
   
 
 
@@ -119,7 +119,6 @@ giveFilter() {
     .subscribe((res: any) => {
             this.products = res.products;  
       this.TheFiltredProductsByEverything = res;
-      console.log(this.TheFiltredProductsByEverything);
       this.cdr.detectChanges();
     });
 }
@@ -128,11 +127,7 @@ giveFilter() {
     ngOnInit() {
     this.api.getAll(`shop/products/all?page_index=${this.currentPage}&page_size=${this.selectedValue}`).subscribe((res: any) => {
     this.products = res.products;
-    console.log(this.products);
     this.cdr.detectChanges();
-    console.log(this.products._id);
-    console.log(this.currentPage);
-    console.log(this.selectedValue);
     this.api.getAll(`shop/products/brands`).subscribe((res: any) => {;    
       this.newArrOfBr = res || [];
       console.log(this.newArrOfBr);
@@ -144,8 +139,7 @@ giveFilter() {
        this.cdr.detectChanges();
     })
   })
-  // this.api.getAll(`shop/products/search?page_index=${this.currentPage}&page_size=${this.selectedValue}&keywords=${this.keywords}&category_id=${this}&brand=${this}&rating=${this}&price_min=${this}&price_max=${this}&sort_by=${this}&sort_direction=${this}`)
-  console.log(this.keywords);
+
   
 
 }

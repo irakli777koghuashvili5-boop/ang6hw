@@ -1,0 +1,84 @@
+<div class="auth-wrapper" id="register-container">
+  <div class="auth-card" id="card-register">
+    
+    <header id="register-header">
+      <h1 id="title-create">Create an Account</h1>
+      <p class="subtitle" id="text-login-prompt">
+        Already have an account? <a routerLink="/sign-in" id="link-signin">Sign in</a>
+      </p>
+    </header>
+
+    <form id="form-register" (submit)="$event.preventDefault()">
+      <div class="form-row">
+        <div class="field-group">
+          <input type="text" id="reg-fname" placeholder=" ">
+          <label for="reg-fname">First Name</label>
+        </div>
+        <div class="field-group">
+          <input type="text" id="reg-lname" placeholder=" ">
+          <label for="reg-lname">Last Name</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <input type="email" id="reg-email" placeholder=" ">
+        <label for="reg-email">Email</label>
+      </div>
+
+      <div class="field-group password-group">
+        <input id="reg-pass" placeholder=" ">
+        <label for="reg-pass">Password</label>
+        <span class="eye-icon" ></span>
+      </div>
+
+      <div class="form-row align-bottom">
+        <div class="field-group flex-1">
+          <input type="number" id="reg-age" placeholder=" ">
+          <label for="reg-age">Age</label>
+        </div>
+        
+        <div class="gender-selector" id="group-gender">
+          <div class="gender-chips">
+            <input type="radio" name="gender" id="male" checked>
+            <label for="male">Male</label>
+            
+            <input type="radio" name="gender" id="female">
+            <label for="female">Female</label>
+            
+            <input type="radio" name="gender" id="other">
+            <label for="other">Other</label>
+          </div>
+          <span class="field-label">Gender</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <input type="text" id="reg-address" placeholder=" ">
+        <label for="reg-address">Address</label>
+      </div>
+
+      <div class="form-row">
+        <div class="field-group flex-2">
+          <input type="tel" id="reg-phone" placeholder=" ">
+          <label for="reg-phone">Phone</label>
+        </div>
+        <div class="field-group flex-1">
+          <input type="text" id="reg-zip" placeholder=" ">
+          <label for="reg-zip">Zipcode</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-create" id="btn-submit-register">
+        Create Account
+      </button>
+    </form>
+
+    <footer id="register-footer">
+      <p class="terms-text">
+        By creating an account, you agree to our 
+        <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
+      </p>
+    </footer>
+
+  </div>
+</div>

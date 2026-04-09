@@ -1,21 +1,35 @@
 <div class="product-page">
   <nav class="breadcrumb">
-    Home > Product page
+    Products > Details
   </nav>
     
   <div class="product-container">
-    <div class="product-image">
-      <img src="https://i.imgur.com/6c1EkHS.jpg" alt="" />
-      <div class="discount">{{productArr[0].discountPercentage}}% OFF</div>
+  <div class="gallery-section" id="image-carousel">
+    <div class="main-image-container" id="main-view">
+      <img [src]="currentImage" [alt]="'Product Image ' + (currentIndex + 1)" id="current-product-img">
+      
+      <button class="nav-btn prev" id="btn-prev-img" (click)="prevImage()">&#10094;</button>
+      <button class="nav-btn next" id="btn-next-img" (click)="nextImage()">&#10095;</button>
     </div>
+    
+    <div class="thumbnail-list" id="thumb-container">
+      <img 
+        *ngFor="let img of images; let i = index" 
+        [src]="img" 
+        [class.active]="currentIndex === i"
+        [id]="'thumb-' + i"
+        (click)="setIndex(i)"
+        class="thumb">
+    </div>
+  </div>
 
     <div class="product-info">
       <h1 class="title">{{productArr[3]}}</h1>
       <div class="rating">⭐<span>{{productArr[8]}}</span></div>
 
       <div class="price">
-        <span class="current">{{productArr[0].current}}{{productArr[0].currency}}</span>
-        <span class="before">1000 USD</span>
+        <span class="current">{{productArr[0]?.current}}{{productArr[0]?.currency}}</span>
+        <span class="before">{{productArr[0]?.beforeDiscount}}{{productArr[0]?.currency}}</span>
       </div>
 
 
@@ -53,8 +67,7 @@
 
   </div>
 
-  
-  <div class="reviews">
+    <div class="reviews">
     <h2>Ratings & Reviews</h2>
     <div class="average">Average rating: <strong>3.625</strong></div>
 
@@ -63,25 +76,49 @@
       <div class="stars">⭐⭐⭐⭐⭐</div>
       <p>Excellent device, reliable, highly recommended</p>
     </div>
-
-    <div class="review">
-      <h3>Stanley Parable, Narrator</h3>
-      <div class="stars">⭐⭐⭐☆☆</div>
-      <p>Sorry, but you’re my story now</p>
-    </div>
-
-    <div class="review">
-      <h3>Cancer</h3>
-      <div class="stars">⭐☆☆☆☆</div>
-      <p>You can’t take me, I’m not alive</p>
-    </div>
-
-    <div class="review">
-      <h3>Rael</h3>
-      <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p>Hey, You, You’re Finally Awake</p>
-    </div>
-
     <button class="review-btn">Leave a Review</button>
   </div>
 </div>
+<!-- <div class="product-container" id="product-card-root">
+  <div class="gallery-section" id="image-carousel">
+    <div class="main-image-container" id="main-view">
+      <img [src]="currentImage" [alt]="'Product Image ' + (currentIndex + 1)" id="current-product-img">
+      
+      <button class="nav-btn prev" id="btn-prev-img" (click)="prevImage()">&#10094;</button>
+      <button class="nav-btn next" id="btn-next-img" (click)="nextImage()">&#10095;</button>
+    </div>
+    
+    <div class="thumbnail-list" id="thumb-container">
+      <img 
+        *ngFor="let img of images; let i = index" 
+        [src]="img" 
+        [class.active]="currentIndex === i"
+        [id]="'thumb-' + i"
+        (click)="setIndex(i)"
+        class="thumb">
+    </div>
+  </div>
+
+  <div class="details-section" id="product-info-panel">
+    <nav class="breadcrumb">Home &gt; Product page</nav>
+    <h1 id="product-title">Apple iPhone 12, 64GB, Red</h1>
+    
+    <div class="price-container">
+      <span class="current-price">408 USD</span>
+      <span class="old-price">450 USD</span>
+      <span class="discount-tag">9% OFF</span>
+    </div>
+
+    <div class="actions">
+      <button class="add-to-cart" id="btn-add-to-cart">Add to Cart</button>
+      <button class="wishlist-btn">❤️</button>
+    </div>
+
+    <p class="stock-status">Out of Stock</p>
+
+    <div class="description">
+      <h3>Product description</h3>
+      <p>The Apple iPhone 12 features the A14 Bionic chip and a stunning Super Retina XDR display.</p>
+    </div>
+  </div>
+</div> -->

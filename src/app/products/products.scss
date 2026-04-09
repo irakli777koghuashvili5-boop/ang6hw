@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  // align-items: flex-start;
   padding: 30px;
   gap: 20px;
 }
@@ -21,8 +20,8 @@
   margin: 15px 0;
 
   .smlBTn {
-    padding: 4px 10px;        // small size
-    font-size: 12px;          // smaller text
+    padding: 4px 10px;     
+    font-size: 12px;          
     border: none;
     border-radius: 4px;
     background-color: #e0e0e0; // light gray background
@@ -31,13 +30,13 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 
     &:hover {
-      background-color: #1e90ff; // sky blue on hover
+      background-color: #1e90ff; 
       color: #fff;
-      transform: scale(1.05);   // subtle hover grow
+      transform: scale(1.05);   
     }
 
     &:active {
-      transform: scale(0.95);   // click feedback
+      transform: scale(0.95);   
     }
   }
 }
@@ -95,7 +94,7 @@
 
     .card img {
       width: auto;
-      height: 200px; /* consistent image height */
+      height: 200px; 
       object-fit: contain; 
       padding: 30px;
     }
@@ -203,7 +202,7 @@
 
 
 
-///
+
 #filter-panel {
   background: #f9f9f9;
   border: 1px solid #ddd;
@@ -286,7 +285,7 @@
 }
 
 #reset-btn {
-  background: #ccc; /* gray */
+  background: #ccc;
   color: #333;
   border: none;
   padding: 8px 12px;
@@ -321,11 +320,9 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 60%;
+  width: 100%;
   flex-wrap: wrap;
-
-
-
+  gap: 20px;
 }
 .h{
   width:auto;
@@ -333,20 +330,27 @@
 }
 
 .sel{
-  height: 50px;
-  width: auto;
+  height: 40px;
+  width: 100px;
 }
 .hh1{
-  width:auto;
+  width:100%;
+  margin: 0!important;
 }
 
 .selet{
   display: flex;
-  gap: 17px;
+  justify-content: center;
+  align-items: center;
 }
 .selet p{
+  width: 100px;
   font-size: 20px;
-  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0!important;
 }
 
 @media (max-width:825px) {
