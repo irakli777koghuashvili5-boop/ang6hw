@@ -20,12 +20,11 @@ export class Api {
           "Authorization" : `Bearer ${localStorage.getItem('access_token')} `
     }})
   }
-patchData(url: string, body: any) {
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-    'Content-Type': 'application/json'
-  });
-
-  return this.http.patch(url, body, { headers });
-}
+  patchData(url: string, body: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.patch(this.httpBase + url, body, { headers });
+  }
 }

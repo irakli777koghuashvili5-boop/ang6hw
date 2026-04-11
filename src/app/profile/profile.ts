@@ -47,7 +47,7 @@ export class Profile {
     console.error('No token found. User is not logged in.');
     return; 
   }
-  const apiUrl = 'https://api.everrest.educata.dev/auth/change_password';
+  const apiUrl = 'auth/change_password';
   this.api.patchData(apiUrl, {
     oldPassword: this.oldPassword,
     newPassword: this.newPassword
@@ -56,6 +56,9 @@ export class Profile {
       console.log('Password changed successfully:', res);
       this.oldPassword = '';
       this.newPassword = '';
+      this.showPopup = false;
+      this.cdr.detectChanges();
+
     },
     error: (err) => {
       console.error('Failed to change password:', err);
@@ -64,11 +67,12 @@ export class Profile {
 }
 
  updateProfile() {
-  const apiurl = `https://api.everrest.educata.dev/auth/update`
+  const apiurl = `auth/update`
     this.api.patchData(apiurl, this.arrOfProfile).subscribe({
       next: (res) => {
         alert('Profile updated successfully');
         this.showEditPopup = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Update failed:', err);
