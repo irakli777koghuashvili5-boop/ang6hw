@@ -1,55 +1,81 @@
+
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { Api } from '../services/api';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
+  standalone: true, 
   imports: [RouterLink, FormsModule],
   templateUrl: './sign-in.html',
-  styleUrl: './sign-in.scss',
+  styleUrls: ['./sign-in.scss'], // <-- plural "styleUrls"
 })
 export class SignIn {
-  constructor(private api : Api, private cdr : ChangeDetectorRef) {}
   mainResp: any = {};
   email = '';
   password = '';
+  firstname = localStorage.getItem('firstName');
   
-  onClickSignIn(){
+  constructor(
+    private api: Api,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
+
+  onClickSignIn() {
     const userData = {
       email: this.email,
       password: this.password,
-    }
-    this.api.postAll(`auth/sign_in`, userData)
-    .subscribe((res: any) => {
-      console.log(`Post Response:`, res);  
-      
-       if(res.statusCode == 200 || res.statusCode == 201|| res.statusCode == 202 || res.statusCode == 203 || res.statusCode == 305 || res.statusCode != 304){
+    };
+
+    this.api.postAll(`auth/sign_in`, userData).subscribe({
+      next: (res: any) => {
+        if (res.access_token && res.refresh_token) {
           localStorage.setItem('access_token', res.access_token);
           localStorage.setItem('refresh_token', res.refresh_token);
-          }
-      if(res.statusCode == 409){
-            alert(`email not verified`)
-      }
 
-        this.cdr.detectChanges();
-      
-      if(res.access_token && res.refresh_token){
-         this.api.getAllHeader(`auth` )
-         .subscribe((res1: any) => {
-          console.log(`Get Response:`, res1);
-          if(res1.statusCode == 200 || res1.statusCode == 201|| res1.statusCode == 202 || res1.statusCode == 203 || res1.statusCode == 305 || res1.statusCode != 304){
-            alert(`welcome back ${res1.userName}`)
-            this.mainResp = res1;
-            console.log(this.mainResp);
-            window.location.href = `/products`
-          }
-         
-        this.cdr.detectChanges();
+          this.api.getAllHeader(`auth`,{
+            headers: {
+              "Authorization" : `Bearer ${localStorage.getItem('access_token')} `
+            }
+          }).subscribe({
+            next: (res1: any) => {
+              alert(`Welcome back`);
+              localStorage.setItem('userId', res1._id);
+              localStorage.setItem('firstName', res1.firstName);
+              
+              this.router.navigateByUrl('/products');
+              this.cdr.detectChanges();
+            },
+            error: (err: any) => {
+              const status = err.status || err.error?.statusCode;
+
+              if (status === 409) {
+                alert("Email not verified. Confirmation email sent to " + this.email);
+
+                this.api.postAll(`auth/verify_email`, { email: this.email }).subscribe({
+                  next: (res2: any) => console.log('Verification sent:', res2),
+                  error: (errVerify: any) => {
+                    alert("Failed to send confirmation email.");
+                    console.error(errVerify);
+                  }
+                });
+              } else {
+                alert(`Failed to load user profile.`);
+              }
+              this.cdr.detectChanges();
+            }
+          });
+        }
       },
-    )
-    }
+      error: (err: any) => {
+        const status = err.status || err.error?.statusCode;
+        if (status === 400 || status === 401) {
+          alert(`Wrong email or password`);
+        }
+        this.cdr.detectChanges();
+      }
+    });
   }
-  )
-}
 }

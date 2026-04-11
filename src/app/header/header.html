@@ -32,13 +32,16 @@
           <li routerLink="/home">home<i></i></li>
           <li routerLink="/products">products<i></i></li>
           <li>about</li>
-          <li><i class="fa-solid fa-cart-arrow-down"></i>cart</li>
+          <li routerLink="/cart"  ><i class="fa-solid fa-cart-arrow-down"></i>cart</li>
         </ul>
       </nav>
     </div>
+    <div *ngIf="!seeSign" class="actions" routerLink="/profile">
+  <span class="btn-primary"> <i class="fa-solid fa-2x fa-circle-user"></i>{{firstName}}</span>
+</div>
 
-    <div class="actions">
-      <button class="btn-primary" routerLink="/sign-in" routerLinkActive="activeRoute"><i class="fa-solid fa-lg fa-circle-user"></i>Sign in</button>
-    </div>
+    <div *ngIf="seeSign" class="actions">
+  <button class="btn-primary" routerLink="/sign-in" routerLinkActive="activeRoute"><i class="fa-solid fa-2x fa-circle-user"></i>Sign in</button>
+</div>
   </div>
 </header>

@@ -14,7 +14,7 @@ export class Api {
   postAll(url: string, body : any) {
     return this.http.post(this.httpBase + url, body)
   }
-  getAllHeader(url: string){
+  getAllHeader(url: string, p0: { headers: { Authorization: string; }; }){
     return this.http.get(this.httpBase + url, {
       headers : {
           "Authorization" : `Bearer ${localStorage.getItem('access_token')} `

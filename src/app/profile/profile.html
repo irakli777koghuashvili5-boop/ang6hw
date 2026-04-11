@@ -1,0 +1,57 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="user">
+      <div class="avatar"><img [src]="arrOfProfile.avatar" alt=""></div>
+      <h3>{{arrOfProfile.firstName}}</h3>
+      <p>{{arrOfProfile.email}}</p>
+    </div>
+
+    <ul class="menu">
+      <li (click)="tab='cart'" [class.active]="tab==='cart'">
+        <span>🛒</span> My Cart
+      </li>
+      <li (click)="tab='wishlist'" [class.active]="tab==='wishlist'">
+        <span>❤️</span> Wishlist
+      </li>
+      <li (click)="tab='orders'" [class.active]="tab==='orders'">
+        <span>📦</span> My Orders
+      </li>
+      <li (click)="tab='details'" [class.active]="tab==='details'">
+        <span>👤</span> My Details
+      </li>
+    </ul>
+
+    <button (click)="logOutFn()" class="logout">Logout</button>
+  </aside>
+
+  <main class="content">
+
+    <section *ngIf="tab==='cart'" class="panel">
+      <h2>My Cart</h2>
+      <p>Your cart is empty.</p>
+    </section>
+
+    <section *ngIf="tab==='wishlist'" class="panel">
+      <h2>Wishlist</h2>
+      <p>No items yet.</p>
+    </section>
+
+    <section *ngIf="tab==='orders'" class="panel">
+      <h2>My Orders</h2>
+      <p>No orders found.</p>
+    </section>
+
+    <section *ngIf="tab==='details'" class="panel details">
+      <h2>My Details</h2>
+
+      <div class="info">
+        <div><span>Name</span><p>{{arrOfProfile.firstName}} {{arrOfProfile.lastName}}</p></div>
+        <div><span>Email</span><p>{{arrOfProfile.email}}</p></div>
+        <div><span>Phone</span><p>{{arrOfProfile.phone}}</p></div>
+        <div><span>Address</span><p>{{arrOfProfile.address}}</p></div>
+        <div><span>Zipcode</span><p>{{arrOfProfile.zipcode}}</p></div>
+      </div>
+    </section>
+
+  </main>
+</div>

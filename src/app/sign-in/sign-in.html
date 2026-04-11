@@ -22,7 +22,7 @@
           id="input-pass" 
           placeholder="Password" 
           name="password">
-        <span class="eye-icon" id="icon-toggle" >
+        <span class="eye-icon" id="icon-toggle">
         </span>
       </div>
 
@@ -32,7 +32,7 @@
           <span class="box"></span>
           Remember me for 7 days
         </label>
-        <a href="#" class="forgot-link" id="link-forgot">Forgot password?</a>
+        <a routerLink="/recover-passcode" class="forgot-link" id="link-forgot">Forgot password?</a>
       </div>
 
       <button type="submit" (click)="onClickSignIn()" class="btn-signin" id="btn-submit">Sign In</button>

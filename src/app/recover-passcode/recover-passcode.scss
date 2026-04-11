@@ -1,0 +1,118 @@
+/* Variables based on your image colors */
+$primary-pink: #f15870; 
+$text-dark: #0d0c22;
+$text-muted: #6e6d7a;
+$bg-light: #f9f9fb;
+$white: #ffffff;
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $bg-light;
+  padding: 20px;
+}
+
+.reset-card {
+  background: $white;
+  width: 100%;
+  max-width: 440px;
+  padding: 50px 45px;
+  border-radius: 12px;
+  /* Soft Dribbble-style shadow */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  text-align: center;
+
+  header {
+    margin-bottom: 30px;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      font-size: 14px;
+      color: $text-muted;
+
+      a {
+        color: $text-muted;
+        text-decoration: underline;
+        transition: color 0.2s;
+
+        &:hover {
+          color: $primary-pink;
+        }
+      }
+    }
+  }
+
+  .instruction {
+    font-size: 15px;
+    color: $text-muted;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &::placeholder {
+        color: #cbd5e1;
+      }
+
+      &:focus {
+        border-color: $primary-pink;
+        box-shadow: 0 0 0 3px rgba($primary-pink, 0.1);
+      }
+    }
+  }
+
+  .btn-submit {
+    width: 100%;
+    background-color: $primary-pink;
+    color: $white;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+
+    &:hover {
+      background-color: darken($primary-pink, 5%);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  footer {
+    margin-top: 35px;
+
+    .help-text {
+      font-size: 14px;
+      color: $text-muted;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

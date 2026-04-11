@@ -190,3 +190,89 @@ $border: #e7e7e9;
     .main-nav ul { flex-direction: column; width: 100%; gap: 20px; }
   }
 }
+
+/* Variables to match your Reset Password screen */
+$primary-pink: #f15870; 
+$text-dark: #0d0c22;
+$text-muted: #6e6d7a;
+$border-color: #e2e8f0;
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: px;
+
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: $text-dark;
+    padding: 10px 22px;
+    border: 1.5px solid $border-color;
+    border-radius: 50px; // Pill shape
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    i {
+      color: $text-muted; // Icon slightly muted
+    }
+
+    &:hover {
+      border-color: $text-dark;
+      background-color: #f8f9fa;
+      
+    }
+  
+  }
+}
+
+/* The Profile Button (Shown when !seeSign) */
+.profile-container {
+  display: flex;
+  align-items: center;
+  
+  .profile-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid $border-color;
+    padding: 6px 6px 6px 16px; // Less padding on right to fit avatar
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+
+    span {
+      font-weight: 600;
+      font-size: 14px;
+      color: $text-dark;
+    }
+
+    .avatar-circle {
+      width: 32px;
+      height: 32px;
+      background-color: #f1f5f9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $primary-pink;
+      font-size: 14px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    &:hover {
+      border-color: $primary-pink;
+      box-shadow: 0 4px 12px rgba($primary-pink, 0.1);
+      
+      .avatar-circle {
+        background-color: $primary-pink;
+        color: white;
+      }
+    }
+  }
+}

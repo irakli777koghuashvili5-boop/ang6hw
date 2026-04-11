@@ -28,6 +28,18 @@ export const routes: Routes = [
     loadComponent: () =>import('./sign-up/sign-up').then((m) => m.SignUp),
   },
   {
+    path: `recover-passcode`,
+    loadComponent: () =>import('./recover-passcode/recover-passcode').then((m) => m.RecoverPasscode),
+  },
+  {
+    path: `profile`,
+    loadComponent: () =>import('./profile/profile').then((m) => m.Profile),
+  },
+  {
+    path: `cart`,
+    loadComponent: () =>import('./cart/cart').then((m) => m.Cart),
+  },
+  {
     path:'**',
     loadComponent: () =>import('./error/error').then((m) => m.Error),
   
