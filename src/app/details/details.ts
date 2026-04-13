@@ -17,6 +17,7 @@ export class Details {
   ratingsArr: any[] = [];
   images: string[] = [];
   quotesArr: any[] = [];
+  comment: any;
 getStars(rating: number): string {
   const validRating = Math.max(0, rating || 0);
   const filledStars = '⭐'.repeat(validRating);
@@ -90,5 +91,45 @@ getStars(rating: number): string {
       }
     })
   }
+  isReviewPopupOpen: boolean = false;
+reviewData = {
+  comment: '',
+  category: 'Game' 
+};
+
+openReviewPopup() {
+  this.isReviewPopupOpen = true;
+}
+
+closeReviewPopup() {
+  this.isReviewPopupOpen = false;
+  this.reviewData = { comment: '', category: 'Game' }; 
+}
+
+submitReview() {
+  console.log('Review Submitted:', this.reviewData);
+  this.api.postAllHeader(`quote`, {
+    headers: {
+     "Authorization" : `Bearer ${localStorage.getItem('access_token')} `
+    },
+    body: {
+      "author": localStorage.getItem(`firstName`),
+      "quote": this.reviewData.comment,
+      "type": this.reviewData.category
+    }
+  }).subscribe({
+    next: (res => 
+      console.log(res)
+    ),
+    error: (err => 
+      console.log(err)
+    )
+  })
+
+  this.closeReviewPopup();
+}
+
+
+
   
 }

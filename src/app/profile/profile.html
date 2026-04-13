@@ -71,7 +71,7 @@
     </div>
   </div>
 </div>
-
+<!-- 
 <div class="popup" *ngIf="showEditPopup">
   <div class="popup-content">
     <h2>Edit Profile</h2>
@@ -89,6 +89,32 @@
       <option value="FEMALE">Female</option>
       <option value="OTHER">Other</option>
     </select>
+
+    <div class="popup-actions">
+      <button class="btn-save" (click)="updateProfile()">Save</button>
+      <button class="btn-cancel" (click)="showEditPopup = false">Cancel</button>
+    </div>
+  </div>
+</div> -->
+<div class="popup" *ngIf="showEditPopup">
+  <div class="popup-content">
+    <h2>Edit Profile</h2>
+
+    <input type="text" [(ngModel)]="arrOfProfile.firstName" placeholder="First Name" />
+    <input type="text" [(ngModel)]="arrOfProfile.lastName" placeholder="Last Name" />
+    
+    <input type="number" [(ngModel)]="arrOfProfile.age" placeholder="Age" />
+    <select [(ngModel)]="arrOfProfile.gender">
+      <option value="MALE">Male</option>
+      <option value="FEMALE">Female</option>
+      <option value="OTHER">Other</option>
+    </select>
+
+    <input type="email" [(ngModel)]="arrOfProfile.email" placeholder="Email" />
+    <input type="text" [(ngModel)]="arrOfProfile.address" placeholder="Address" />
+
+    <input type="text" [(ngModel)]="arrOfProfile.phone" placeholder="Phone" />
+    <input type="text" [(ngModel)]="arrOfProfile.zipcode" placeholder="Zipcode" />
 
     <div class="popup-actions">
       <button class="btn-save" (click)="updateProfile()">Save</button>

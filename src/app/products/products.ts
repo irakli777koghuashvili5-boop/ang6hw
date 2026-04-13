@@ -57,7 +57,7 @@ ngOnDestroy() {
     clearInterval(this.carouselInterval);
   }
 }
-  minPrice: number = 0;
+  minPrice: number = 1;
   maxPrice: number = 10000;
   options: Options = {
     floor: 0,
@@ -84,14 +84,13 @@ ngOnDestroy() {
   ngOnInit() {
       this.initialLoad();
   this.startAutoPlay();
-    this.initialLoad();
+
   }
 
   initialLoad() {
     this.api.getAll(`shop/products/all?page_index=${this.currentPage}&page_size=${this.selectedValue}`)
       .subscribe((res: any) => {
         this.products = res.products;
-        this.cdr.detectChanges();
         this.api.getAll(`shop/products/brands`).subscribe((resBr: any) => {
           this.newArrOfBr = resBr || [];
           this.cdr.detectChanges();
@@ -119,10 +118,11 @@ ngOnDestroy() {
       page_index: this.currentPage,
       page_size: this.selectedValue,
       keywords: this.keywords,
-      category_id: Number(this.selectedCategories),
+      category_id: this.selectedCategories ,
       brand: this.selectedBrand !== 'all' ? this.selectedBrand : null,
       price_min: this.minPrice,
       price_max: this.maxPrice,
+      sort_by: "price",
       sort_direction: this.selectedOrder
     };
 
@@ -154,8 +154,9 @@ ngOnDestroy() {
 
 
 onPageSizeChange() {
-    this.currentPage = 1; // Always reset to page 1 when the page size changes
-    this.giveFilter();    // Instantly fetch the products with the new limit
+    this.currentPage = 1; 
+    this.giveFilter();  
+
   }
 
   onCategoryChange(event: Event, item: any) {

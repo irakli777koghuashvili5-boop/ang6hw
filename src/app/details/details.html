@@ -78,11 +78,44 @@
       <span class="review-date">{{ item.createdAt | date:'longDate' }}</span>
     </div>
 
-    <div class="stars">{{ getStars(item.value) }}</div>
+    <div class="stars">{{ getStars(item.value) }}{{item.value}}.0</div>
 
     <p>{{ quotesArr[$index]?.quote}}</p>
   </div>
 }
-    <button class="review-btn">Leave a Review</button>
+    <button class="review-btn" (click)="openReviewPopup()">Leave a Review</button>
+  </div>
+</div>
+
+
+
+
+<div class="review-overlay" *ngIf="isReviewPopupOpen" (click)="closeReviewPopup()">
+  <div class="review-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Submit Review</h3>
+      <button class="close-btn" (click)="closeReviewPopup()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="input-group">
+        <label>Category</label>
+        <select [(ngModel)]="reviewData.category" class="glass-select">
+          <option value="Game">Game</option>
+          <option value="Series">Series</option>
+          <option value="Movie">Movie</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Your Thoughts</label>
+        <textarea [(ngModel)]="reviewData.comment" placeholder="Write your review here..." rows="4" class="glass-textarea"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" (click)="closeReviewPopup()">Cancel</button>
+      <button class="submit-btn" (click)="submitReview()">Post Review</button>
+    </div>
   </div>
 </div>
