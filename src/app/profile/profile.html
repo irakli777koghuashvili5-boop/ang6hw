@@ -44,11 +44,11 @@
       <h2>My Details</h2>
 
       <div class="info">
-        <div><span>Name</span><p>{{arrOfProfile.firstName}} {{arrOfProfile.lastName}}</p></div>
-        <div><span>Email</span><p>{{arrOfProfile.email}}</p></div>
-        <div><span>Phone</span><p>{{arrOfProfile.phone}}</p></div>
-        <div><span>Address</span><p>{{arrOfProfile.address}}</p></div>
-        <div><span>Zipcode</span><p>{{arrOfProfile.zipcode}}</p></div>
+        <div class="Detl"><span>Name</span><p>{{arrOfProfile.firstName}} {{arrOfProfile.lastName}}</p></div>
+        <div class="Detl"><span>Email</span><p>{{arrOfProfile.email}}</p></div>
+        <div class="Detl"><span>Phone</span><p>{{arrOfProfile.phone}}</p></div>
+        <div class="Detl"><span>Address</span><p>{{arrOfProfile.address}}</p></div>
+        <div class="Detl"><span>Zipcode</span><p>{{arrOfProfile.zipcode}}</p></div>
       <button (click)="showEditPopup = true" class="edit-btn">✏️ Edit</button>
         <div><button (click)="deleteAcc()" class="edit-btn">Delete Account</button></div>
         <div><button (click)="showPopup = true" class="change-btn">Change password</button></div>
@@ -71,31 +71,7 @@
     </div>
   </div>
 </div>
-<!-- 
-<div class="popup" *ngIf="showEditPopup">
-  <div class="popup-content">
-    <h2>Edit Profile</h2>
 
-    <input type="text" [(ngModel)]="arrOfProfile.firstName" placeholder="First Name" />
-    <input type="text" [(ngModel)]="arrOfProfile.lastName" placeholder="Last Name" />
-    <input type="number" [(ngModel)]="arrOfProfile.age" placeholder="Age" />
-    <input type="email" [(ngModel)]="arrOfProfile.email" placeholder="Email" />
-    <input type="text" [(ngModel)]="arrOfProfile.address" placeholder="Address" />
-    <input type="text" [(ngModel)]="arrOfProfile.phone" placeholder="Phone" />
-    <input type="text" [(ngModel)]="arrOfProfile.zipcode" placeholder="Zipcode" />
-
-    <select [(ngModel)]="arrOfProfile.gender">
-      <option value="MALE">Male</option>
-      <option value="FEMALE">Female</option>
-      <option value="OTHER">Other</option>
-    </select>
-
-    <div class="popup-actions">
-      <button class="btn-save" (click)="updateProfile()">Save</button>
-      <button class="btn-cancel" (click)="showEditPopup = false">Cancel</button>
-    </div>
-  </div>
-</div> -->
 <div class="popup" *ngIf="showEditPopup">
   <div class="popup-content">
     <h2>Edit Profile</h2>
