@@ -219,116 +219,7 @@ $c: #06b6d4; $r: #ff4d5a; $bg: #050508; $w: #fff;
   gap: 25px;
 }
 
-// .card {
-//   background: #fff;
-//   border-radius: 20px;
-//   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-//   overflow: hidden;
-//   transition: 0.3s ease;
-//   position: relative;
-// }
 
-// .card:hover {
-//   transform: translateY(-8px);
-//   box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-// }
-
-// .card .discount {
-//   position: absolute;
-//   top: 12px;
-//   left: 12px;
-//   background: #ff4757;
-//   color: #fff;
-//   font-size: 11px;
-//   font-weight: bold;
-//   padding: 4px 10px;
-//   border-radius: 12px;
-//   z-index: 2;
-// }
-
-// .card .img-wrapper {
-//   height: 180px;
-//   padding: 15px;
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .card .img-wrapper img {
-//   max-height: 100%;
-//   object-fit: contain;
-// }
-
-// .card .card-content {
-//   padding: 15px;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 8px;
-// }
-
-// .card .rating {
-//   color: #f4a261;
-//   font-size: 13px;
-// }
-
-// .card .rating i {
-//   margin-left: 4px;
-// }
-
-// .card .title {
-//   font-size: 1rem;
-//   font-weight: 600;
-//   color: #333;
-//   min-height: 2.4em;
-//   display: -webkit-box;
-//   -webkit-box-orient: vertical;
-//   overflow: hidden;
-// }
-
-// .card .price {
-//   font-size: 1.2rem;
-//   font-weight: 700;
-//   color: #2a9d8f;
-// }
-
-// .card .old-price {
-//   text-decoration: line-through;
-//   color: #999;
-//   font-size: 0.85rem;
-//   margin-left: 8px;
-// }
-
-// .card .actions {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-top: 5px;
-// }
-
-// .card .actions button {
-//   border: none;
-//   cursor: pointer;
-//   width: 38px;
-//   height: 38px;
-//   border-radius: 50%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   transition: 0.2s;
-// }
-
-// .card .actions .heart {
-//   background: #fff0f0;
-//   color: #ff4757;
-// }
-
-// .card .actions .cart {
-//   background: #2a9d8f;
-//   color: #fff;
-// }
-
-// .card .actions button:hover {
-//   transform: scale(1.1);
-// }
-/* --- Individual Product Card --- */
 .card {
   background: #fff;
   border-radius: 20px;
@@ -359,7 +250,6 @@ $c: #06b6d4; $r: #ff4d5a; $bg: #050508; $w: #fff;
     border-radius: 12px;
     z-index: 2;
   }
-
   .img-wrapper {
     height: 200px;
     padding: 20px;
@@ -374,7 +264,6 @@ $c: #06b6d4; $r: #ff4d5a; $bg: #050508; $w: #fff;
       object-fit: contain; // Keeps product aspect ratio perfect
     }
   }
-
   .card-content {
     padding: 20px;
     flex: 1;
@@ -517,7 +406,6 @@ $c: #06b6d4; $r: #ff4d5a; $bg: #050508; $w: #fff;
 justify-self: center;
   }
 }
-
 @media (max-width: 992px) {
   .mainsec {
     flex-direction: column; 
@@ -542,7 +430,6 @@ justify-self: center;
 
   }
 }
-
 @media (max-width: 576px) {
   :host {
     padding: 15px;
@@ -591,14 +478,12 @@ justify-self: center;
   }
   $c: #06b6d4;
 $w: #fff;
-
 .brand-strip {
   margin: 20px;
   padding: 80px 0;
   background: linear-gradient(135deg, #d9e4ec #f0f4f8, #d9e4ec);
   overflow: hidden;
   position: relative;
-
   .strip-label {
     text-align: center;
     text-transform: uppercase;
@@ -608,17 +493,14 @@ $w: #fff;
     margin-bottom: 40px;
     opacity: 0.8;
   }
-
   .logo-track {
     display: flex;
     width: 100%;
     mask-image: linear-gradient(to right, transparent, rgb(0, 0, 0) 15%, rgb(0, 0, 0) 85%, transparent);
-    
     .track-inner {
       display: flex;
       gap: 100px; // Large gap for that premium feel
       animation: marquee 30s linear infinite;
-      
       .brand {
         font-size: clamp(1.5rem, 3vw, 2.5rem);
         font-weight: 900;
@@ -626,28 +508,17 @@ $w: #fff;
         white-space: nowrap;
         transition: 0.4s;
         cursor: default;
-        
         &:hover {
           color: $w;
           transform: scale(1.1);
-          text-shadow: 0 0 20px $c;
-        }
-      }
-    }
-  }
-}
-
-// --- ANIMATION ---
+          text-shadow: 0 0 20px $c;}}}}}
 @keyframes marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } // Moves halfway through the duplicated list
+  100% { transform: translateX(-50%); } 
 }
-
-// Ensure the animation stays smooth and doesn't "snap"
 @media (prefers-reduced-motion: reduce) {
   .track-inner { animation: none !important; overflow-x: auto; }
 }
-
 @media (max-width: 768px) {
   .brand-strip {
     padding: 40px 0;
@@ -660,13 +531,9 @@ $w: #fff;
   border: 1px solid rgb(104, 189, 101); border-radius: 50%;
   color: #000000; cursor: pointer; z-index: 999; display: grid;
   place-items: center; transition: 0.3s; opacity: 0; visibility: hidden;
-  
   &.show { opacity: 1; visibility: visible; transform: translateY(0); }
   &:not(.show) { transform: translateY(20px); }
-  
   &:hover { background: #77c03f; color: #000; box-shadow: 0 0 20px #06b6d4; }
-  
   svg { width: 24px; height: 24px; pointer-events: none; }
-  
   @media (max-width: 600px) { bottom: 1rem; right: 1rem; width: 50px; height: 50px; }
 }
