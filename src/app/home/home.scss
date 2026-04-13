@@ -1,394 +1,137 @@
 $c: #06b6d4; $r: #ff4d5a; $bg: #050508; $w: #fff;
 
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: $bg; color: $w; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
 .landing-page {
   background: $bg; color: $w; overflow-x: hidden;
   
-  // --- 1. HERO HUGE ---
   .hero-huge {
-    height: 100vh; position: relative; display: flex; align-items: center; padding: 0 8%;
-    
+    min-height: 100vh; position: relative; display: flex; align-items: center; padding: 0 8%;
+    overflow: hidden;
+
     .hero-content {
-      z-index: 5;
+      z-index: 5; width: 100% !important; max-width: 100vw !important; 
       h1 { 
-        font-size: clamp(4rem, 12vw, 10rem); line-height: 0.9; font-weight: 900; letter-spacing: -4px;
-        span { color: transparent; -webkit-text-stroke: 1.5px $w; opacity: 0.8; }
+        font-size: clamp(2.8rem, 11vw, 10rem) !important; 
+        font-weight: 900 !important; 
+        letter-spacing: clamp(-2px, -0.04em, -4px) !important; 
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        text-transform: uppercase !important;
+        span { 
+          color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.8); 
+          @media (max-width: 600px) { -webkit-text-stroke: 0.5px rgba(255,255,255,0.8); }
+        }
       }
       p { font-size: clamp(1.1rem, 2vw, 1.8rem); max-width: 700px; margin: 40px 0; opacity: 0.6; }
     }
 
     .glass-overlay {
-      position: absolute; inset: 0; 
+      position: absolute; inset: 0; z-index: 1;
       background: radial-gradient(circle at 80% 20%, rgba(6,182,212,0.15), transparent 50%);
-      z-index: 1;
     }
   }
 
-  // --- 2. MEGA STATS ---
   .mega-stats {
-    display: flex; justify-content: space-around; padding: 100px 5%; background: #000;
-    border-top: 1px solid rgba(255,255,255,0.05);
-
+    display: grid; grid-template-columns: repeat(3, 1fr); 
+    padding: 100px 5%; background: #000; border-top: 1px solid rgba(255,255,255,0.05);
     .stat-item {
-      text-align: center;
-      h2 { font-size: clamp(3rem, 6vw, 6rem); font-weight: 800; span { font-size: 1.5rem; color: $c; } }
+      text-align: center; padding: 20px;
+      h2 { font-size: clamp(3rem, 6vw, 6rem); font-weight: 800; span { font-size: 0.4em; color: $c; margin-left: 5px; } }
       p { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.5; margin-top: 10px; }
     }
   }
 
-  // --- 3. MARKETING CAROUSEL ---
   .marketing-carousel {
-    padding: 150px 8%;
+    padding: clamp(60px, 10vw, 150px) 8%;
     .slide-large {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; flex-wrap: wrap;
-      
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
+      @media (min-width: 1024px) { grid-template-columns: 1fr 1.2fr; gap: 80px; }
+
       .text-block {
-        .label { color: $c; font-weight: 700; text-transform: uppercase; font-size: 14px; }
-        h2 { font-size: clamp(2.5rem, 5vw, 5rem); margin: 20px 0; }
-        p { font-size: 1.2rem; line-height: 1.8; opacity: 0.7; }
+        text-align: center;
+        @media (min-width: 1024px) { text-align: left; }
+        .label { color: $c; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; }
+        h2 { font-size: clamp(2.2rem, 5vw, 5rem); margin: 15px 0; line-height: 1.1; }
+        p { font-size: clamp(1rem, 1.2vw, 1.2rem); line-height: 1.6; opacity: 0.7; max-width: 600px; margin: 0 auto; @media (min-width: 1024px) { margin: 0; } }
       }
 
       .visual-placeholder {
-        height: 500px; background: rgba(255,255,255,0.02); border-radius: 40px;
-        border: 1px solid rgba(255,255,255,0.1);
-        &.shadow-cyan { box-shadow: 0 50px 100px -20px rgba(6,182,212,0.2); }
-        img{
-            width: 100%; height: 100%; object-fit: cover; border-radius: 40px;
+        height: auto; width: 100%; aspect-ratio: 16 / 10; 
+        background: rgba(255,255,255,0.02); border-radius: clamp(20px, 4vw, 40px);
+        border: 1px solid rgba(255,255,255,0.1); overflow: hidden; order: -1; 
+        @media (min-width: 1024px) { order: 1; }
+        &.shadow-cyan { 
+          box-shadow: 0 20px 50px -10px rgba(6,182,212,0.15); 
+          @media (min-width: 1024px) { box-shadow: 0 50px 100px -20px rgba(6,182,212,0.2); }
         }
+        img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); &:hover { transform: scale(1.05); } }
       }
     }
   }
 
-  // --- 4. MASSIVE QUOTE ---
   .quote-section {
     padding: 200px 10%; text-align: center;
     .massive-quote {
       font-size: clamp(2rem, 4.5vw, 5rem); font-weight: 700; line-height: 1.2;
-      span { background: linear-gradient($c, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      span { background: linear-gradient($c, #3b82f6); -webkit-background-clip:  text; -webkit-text-fill-color: transparent; }
     }
   }
 
-  // --- 5. FINAL BANNER ---
   .final-banner {
-    padding: 150px 5%;
+    padding: 100px 5%;
     .banner-inner {
-      background: rgb(21, 21, 74) !important; color: #ffffff !important; border-radius: 60px; padding: 120px 20px; text-align: center;
+      background: rgb(21, 21, 74) !important; color: #ffffff !important; border-radius: 60px; 
+      padding: clamp(60px, 10vw, 120px) 20px; text-align: center;
       h2 { font-size: clamp(2.5rem, 6vw, 6rem); margin-bottom: 50px; letter-spacing: -2px; }
     }
   }
 }
 
-// --- LARGE BUTTONS ---
+.brand-strip {
+  padding: 80px 0; background: #000; overflow: hidden; position: relative;
+  .strip-label { text-align: center; text-transform: uppercase; letter-spacing: 5px; font-size: 12px; color: $c; margin-bottom: 40px; opacity: 0.8; }
+  .logo-track {
+    display: flex; width: 100%; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    .track-inner {
+      display: flex; gap: clamp(50px, 8vw, 120px); animation: marquee 30s linear infinite;
+      .brand { 
+        font-size: clamp(1.2rem, 3vw, 2.5rem); font-weight: 900; color: rgba(255, 255, 255, 0.2); 
+        white-space: nowrap; transition: 0.4s; cursor: default;
+        &:hover { color: $w; transform: scale(1.1); text-shadow: 0 0 20px $c; }
+      }
+    }
+  }
+}
+
 .btn-xl-primary {
-  padding: 24px 60px; font-size: 18px; font-weight: 800; border-radius: 100px;
-  background: $c; color: #000; border: none; cursor: pointer; transition: 0.4s;
-  &:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(6,182,212,0.4); }
+  padding: clamp(16px, 2vw, 24px) clamp(30px, 4vw, 60px); font-size: clamp(14px, 1.5vw, 18px); 
+  font-weight: 800; border-radius: 100px; background: $c; color: #000; border: none; cursor: pointer; transition: 0.4s;
+  &:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(6, 182, 212, 0.4); }
 }
 
 .btn-xl-link {
-  background: transparent; color: $w; border: none; font-size: 18px; font-weight: 600;
-  margin-left: 30px; cursor: pointer;
+  background: transparent; color: $w; border: none; font-size: 18px; font-weight: 600; margin-left: 30px; cursor: pointer;
   span { transition: 0.3s; margin-left: 10px; display: inline-block; }
   &:hover span { transform: translateX(10px); color: $c; }
 }
 
-// --- RESPONSIVE ---
-@media (max-width: 1024px) {
-  .marketing-carousel .slide-large { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .mega-stats { flex-direction: column; gap: 60px; }
-  .hero-huge { text-align: center; justify-content: center; padding: 0 5%; }
-}
-$c: #06b6d4;
-$w: #fff;
-
-.brand-strip {
-  padding: 80px 0;
-  background: #000;
-  overflow: hidden;
-  position: relative;
-
-  .strip-label {
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 12px;
-    color: $c;
-    margin-bottom: 40px;
-    opacity: 0.8;
-  }
-
-  .logo-track {
-    display: flex;
-    width: 100%;
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    
-    .track-inner {
-      display: flex;
-      gap: 100px;
-      animation: marquee 30s linear infinite;
-      
-      .brand {
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-        font-weight: 900;
-        color: rgba(255, 255, 255, 0.2);
-        white-space: nowrap;
-        transition: 0.4s;
-        cursor: default;
-        
-        &:hover {
-          color: $w;
-          transform: scale(1.1);
-          text-shadow: 0 0 20px $c;
-        }
-      }
-    }
-  }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } 
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .track-inner { animation: none !important; overflow-x: auto; }
-}
-
-@media (max-width: 768px) {
-  .brand-strip {
-    padding: 40px 0;
-    .track-inner { gap: 50px; animation-duration: 15s; }
-  }
-}
-$c: #06b6d4; $bg: #050508; $w: #fff;
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background: $bg; color: $w; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
-.landing-page {
-  
-  .hero-huge {
-    min-height: 100vh; display: flex; align-items: center; padding: 0 8%;
-    position: relative; overflow: hidden;
-
-    .hero-content {
-      z-index: 5; width: 100%;
-      h1 { 
-        font-size: clamp(3.5rem, 12vw, 10rem); line-height: 0.85; font-weight: 900; letter-spacing: -0.04em;
-        span { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.8); }
-      }
-      p { font-size: clamp(1rem, 2.5vw, 1.5rem); max-width: 650px; margin: 30px 0; opacity: 0.6; line-height: 1.5; }
-    }
-  }
-
-  // --- 2. MEGA STATS (Grid to Column) ---
-  .mega-stats {
-    display: grid; grid-template-columns: repeat(3, 1fr); 
-    padding: 80px 5%; border-top: 1px solid rgba(255,255,255,0.1);
-    
-    .stat-item {
-      text-align: center; padding: 20px;
-      h2 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; span { font-size: 0.4em; color: $c; margin-left: 5px; } }
-      p { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; }
-    }
-  }
-
-  // --- 3. BRAND CAROUSEL (Infinite Scroll) ---
-  .brand-strip {
-    padding: 60px 0; overflow: hidden;
-    .logo-track {
-      display: flex; mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
-      .track-inner {
-        display: flex; gap: clamp(50px, 8vw, 120px); animation: marquee 25s linear infinite;
-        .brand { font-size: clamp(1.2rem, 3vw, 2.5rem); font-weight: 900; opacity: 0.2; transition: 0.3s; white-space: nowrap;
-          &:hover { opacity: 1; color: $c; transform: scale(1.1); }
-        }
-      }
-    }
-  }
-
-  // --- 4. MARKETING BLOCKS (Stacking Logic) ---
-  .marketing-carousel {
-    padding: 100px 8%;
-    .slide-large {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center;
-      
-      .text-block {
-        h2 { font-size: clamp(2rem, 5vw, 4.5rem); margin: 15px 0; }
-        p { font-size: 1.1rem; opacity: 0.7; line-height: 1.7; }
-      }
-      .visual-placeholder { 
-        aspect-ratio: 16/9; background: rgba(255,255,255,0.03); border-radius: 30px; 
-        border: 1px solid rgba(255,255,255,0.1); width: 100%;
-      }
-    }
-  }
-
-  // --- 5. FINAL CTA ---
-  .final-banner {
-    padding: 100px 5%;
-    .banner-inner {
-      background: $w; color: #000; border-radius: 40px; padding: clamp(60px, 10vw, 120px) 20px; text-align: center;
-      h2 { font-size: clamp(2rem, 7vw, 6rem); margin-bottom: 40px; }
-    }
-  }
-}
-
-// --- BUTTONS (Responsive Sizing) ---
-.btn-xl-primary {
-  padding: clamp(16px, 2vw, 24px) clamp(30px, 4vw, 60px); 
-  font-size: clamp(14px, 1.5vw, 18px); font-weight: 800; border-radius: 50px;
-  background: $c; color: #000; border: none; cursor: pointer; transition: 0.3s;
-}
-
-// --- ANIMATIONS ---
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-// --- MEDIA QUERIES ---
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .landing-page {
-    .hero-huge { text-align: center; .hero-content p { margin: 30px auto; } }
-    .marketing-carousel .slide-large { grid-template-columns: 1fr; text-align: center; }
+    .mega-stats { grid-template-columns: 1fr; gap: 60px; }
+    .hero-huge { text-align: center; justify-content: center; padding: 0 5%; }
   }
 }
 
-@media (max-width: 600px) {
-  .landing-page {
-    .mega-stats { grid-template-columns: 1fr; gap: 30px; }
-    .hero-huge .hero-content h1 { letter-spacing: -2px; }
-    .brand-strip .logo-track .track-inner { animation-duration: 15s; }
-  }
-}
-.landing-page {
-  .hero-huge {
-    .hero-content {
-      // Ensure the container doesn't let text spill out
-      width: 100% !important;
-      max-width: 100vw !important; 
-      
-      h1 { 
-        /* 1. Adjusted Clamp: 
-           Min: 2.8rem (Small enough for iPhone SE)
-           Middle: 12vw (Scales perfectly with screen)
-           Max: 10rem (Large for Desktop)
-        */
-        font-size: clamp(2.8rem, 11vw, 10rem) !important; 
-        
-        // 2. Responsive Line Height:
-        // Tight on desktop (0.9), slightly looser on mobile (1.0) to prevent overlap
-        
-        font-weight: 900 !important; 
-        
-        // 3. Responsive Letter Spacing:
-        // On mobile, -4px is too tight and makes letters touch.
-        letter-spacing: clamp(-2px, -0.04em, -4px) !important; 
-        
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        text-transform: uppercase !important;
-
-        span { 
-          color: transparent; 
-          -webkit-text-stroke: 1px rgba(255,255,255,0.8); 
-          // Make the stroke thinner on mobile so it stays legible
-          @media (max-width: 600px) { -webkit-text-stroke: 0.5px rgba(255,255,255,0.8); }
-        }
-      }
-    }
-  }
-}
-
-// --- CRITICAL MOBILE ADJUSTMENT ---
 @media (max-width: 600px) {
   .landing-page .hero-huge {
-    padding: 0 5%; // Give more horizontal breathing room
-    align-items: center; // Vertically center for impact
-    
-    .hero-content h1 {
-      // Force a break if the word is too long (e.g., INTELLIGENCE)
-      hyphens: auto;
-      text-align: center;
-    }
+    padding: 0 5%; align-items: center;
+    .hero-content h1 { hyphens: auto; text-align: center; }
   }
+  .brand-strip .logo-track .track-inner { animation-duration: 15s; }
 }
-.landing-page {
-  .marketing-carousel {
-    // Reduced padding for mobile, large for desktop
-    padding: clamp(60px, 10vw, 150px) 8%;
 
-    .slide-large {
-      display: grid; 
-      // Responsive Grid: 1 column on mobile, 2 columns on desktop
-      grid-template-columns: 1fr; 
-      gap: 40px; 
-      align-items: center;
-
-      @media (min-width: 1024px) {
-        grid-template-columns: 1fr 1.2fr;
-        gap: 80px;
-      }
-
-      .text-block {
-        // Center text on mobile, left-align on desktop
-        text-align: center;
-        @media (min-width: 1024px) { text-align: left; }
-
-        .label { 
-          color: $c; 
-          font-weight: 700; 
-          text-transform: uppercase; 
-          font-size: 12px; 
-          letter-spacing: 2px;
-        }
-
-        h2 { 
-          font-size: clamp(2.2rem, 5vw, 5rem); 
-          margin: 15px 0; 
-          line-height: 1.1;
-        }
-
-        p { 
-          font-size: clamp(1rem, 1.2vw, 1.2rem); 
-          line-height: 1.6; 
-          opacity: 0.7; 
-          max-width: 600px;
-          margin: 0 auto; // Center the paragraph on mobile
-          @media (min-width: 1024px) { margin: 0; }
-        }
-      }
-
-      .visual-placeholder {
-        // Critical Fix: Remove fixed height and use aspect-ratio
-        height: auto; 
-        width: 100%;
-        aspect-ratio: 16 / 10; 
-        
-        background: rgba(255,255,255,0.02); 
-        border-radius: clamp(20px, 4vw, 40px);
-        border: 1px solid rgba(255,255,255,0.1);
-        overflow: hidden;
-        
-        // Push to top on mobile if desired using order
-        order: -1; 
-        @media (min-width: 1024px) { order: 1; }
-
-        &.shadow-cyan { 
-          box-shadow: 0 20px 50px -10px rgba(6,182,212,0.15); 
-          @media (min-width: 1024px) {
-            box-shadow: 0 50px 100px -20px rgba(6,182,212,0.2); 
-          }
-        }
-
-        img {
-          width: 100%; 
-          height: 100%; 
-          object-fit: cover; 
-          transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-          
-          &:hover {
-            transform: scale(1.05);
-          }
-        }
-      }
-    }
-  }
-}
+@media (prefers-reduced-motion: reduce) { .track-inner { animation: none !important; overflow-x: auto; } }
