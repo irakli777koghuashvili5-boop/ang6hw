@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from "@angular/router";
@@ -200,5 +200,15 @@ onPageSizeChange() {
 
   goToNext() {
     this.goToPage(this.currentPage + 1);
+  }
+  isVisible = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.isVisible = window.scrollY > 500;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

@@ -135,3 +135,19 @@ body { background: $bg; color: $w; font-family: 'Inter', sans-serif; overflow-x:
 }
 
 @media (prefers-reduced-motion: reduce) { .track-inner { animation: none !important; overflow-x: auto; } }
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px;
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+  color: #fff; cursor: pointer; z-index: 999; display: grid;
+  place-items: center; transition: 0.3s; opacity: 0; visibility: hidden;
+  
+  &.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  &:not(.show) { transform: translateY(20px); }
+  
+  &:hover { background: #06b6d4; color: #000; box-shadow: 0 0 20px #06b6d4; }
+  
+  svg { width: 24px; height: 24px; pointer-events: none; }
+  
+  @media (max-width: 600px) { bottom: 1rem; right: 1rem; width: 50px; height: 50px; }
+}
