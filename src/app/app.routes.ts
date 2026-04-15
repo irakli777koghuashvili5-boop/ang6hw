@@ -29,8 +29,7 @@ export const routes: Routes = [
   },
   {
     path: `recover-passcode`,
-    loadComponent: () =>
-      import('./recover-passcode/recover-passcode').then((m) => m.RecoverPasscode),
+    loadComponent: () => import('./recover-passcode/recover-passcode').then((m) => m.RecoverPasscode),
   },
   {
     path: `profile`,

@@ -14,23 +14,25 @@
           [ngModelOptions]="{standalone: true}" type="email" id="input-email" placeholder="Email address" name="email">
       </div>
 
-      <div class="field-group password-group" id="group-password">
-        <input 
-          [(ngModel)]="password" 
-          [ngModelOptions]="{standalone: true}" 
-          type="password" 
-          id="input-pass" 
-          placeholder="Password" 
-          name="password">
-        <span class="eye-icon" id="icon-toggle">
-        </span>
-      </div>
+  <div class="field-group password-group" id="group-password">
+  <input 
+    [(ngModel)]="password" 
+    [ngModelOptions]="{standalone: true}" 
+    [type]="isPasswordVisible ? 'text' : 'password'" 
+    id="input-pass" 
+    placeholder="Password" 
+    name="password">
+    
+  <span style="font-size: 30px;" class="eye-icon" id="icon-toggle" (click)="togglePasswordVisibility()">
+     👁
+  </span>
+</div>
 
       <div class="actions-row" id="row-options">
         <label class="custom-checkbox" id="label-remember">
           <input type="checkbox" id="check-remember">
           <span class="box"></span>
-          Remember me for 7 days
+          Remember me 
         </label>
         <a routerLink="/recover-passcode" class="forgot-link" id="link-forgot">Forgot password?</a>
       </div>
