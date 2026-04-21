@@ -8,7 +8,7 @@
       </p>
     </header>
 
-    <form id="form-login"  (submit)="$event.preventDefault()">
+    <form id="form-login"  (submit)="onClickSignIn()">
       <div class="field-group" id="group-email">
         <input [(ngModel)]="email" 
           [ngModelOptions]="{standalone: true}" type="email" id="input-email" placeholder="Email address" name="email">
@@ -37,7 +37,7 @@
         <a routerLink="/recover-passcode" class="forgot-link" id="link-forgot">Forgot password?</a>
       </div>
 
-      <button type="submit" (click)="onClickSignIn()" class="btn-signin" id="btn-submit">Sign In</button>
+      <button type="submit" class="btn-signin" id="btn-submit">Sign In</button>
     </form>
 
     <div class="divider" id="separator">

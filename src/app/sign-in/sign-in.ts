@@ -9,14 +9,14 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [RouterLink, FormsModule],
   templateUrl: './sign-in.html',
-  styleUrls: ['./sign-in.scss'], // <-- plural "styleUrls"
+  styleUrls: ['./sign-in.scss'], 
 })
 export class SignIn {
   mainResp: any = {};
   email = '';
   password = '';
   firstname = localStorage.getItem('firstName');
-  isPasswordVisible = false; // Initial state: hidden
+  isPasswordVisible = false; 
 
   togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;

@@ -30,6 +30,7 @@ export class Products implements OnInit {
 
   currentSlide: number = 0;
   carouselInterval: any;
+  isLoading: boolean = true;
 
   startAutoPlay() {
     this.carouselInterval = setInterval(() => {
@@ -90,12 +91,14 @@ export class Products implements OnInit {
   }
 
   initialLoad() {
+    this.isLoading = true;
     this.api
       .getAll(`shop/products/all?page_index=${this.currentPage}&page_size=${this.selectedValue}`)
       .subscribe((res: any) => {
         this.products = res.products;
         this.api.getAll(`shop/products/brands`).subscribe((resBr: any) => {
           this.newArrOfBr = resBr || [];
+          this.isLoading = false;
           this.cdr.detectChanges();
         });
 
@@ -107,17 +110,20 @@ export class Products implements OnInit {
   }
 
   loadProducts() {
+    this.isLoading = true;
     this.api
       .getAll(`shop/products/all?page_index=${this.currentPage}&page_size=${this.selectedValue}`)
       .subscribe({
         next: (res: any) => {
           this.products = res.products;
+          this.isLoading = false;
           this.cdr.detectChanges();
         },
       });
   }
 
   giveFilter() {
+    this.isLoading = true;
     const params: any = {
       page_index: this.currentPage,
       page_size: this.selectedValue,
@@ -146,6 +152,7 @@ export class Products implements OnInit {
     this.api.getAll(`shop/products/search?${queryString}`).subscribe((res: any) => {
       this.products = res.products;
       this.TheFiltredProductsByEverything = res;
+      this.isLoading = false;
       this.cdr.detectChanges();
     });
   }

@@ -89,6 +89,13 @@
     </div>
 
     <div class="product-listing">
+        @if (isLoading) {
+    <div class="loading-overlay">
+      <div class="spinner"></div>
+      <p>Loading menu...</p>
+    </div>
+  }
+        @if (!isLoading){
       <div class="child">
         @for (item of products; track item._id) {
           <div class="card" routerLink="/details" [queryParams]="{id: item._id}">
@@ -123,7 +130,7 @@
           </div>
         }
       </div>
-
+    }
       <div class="pagination-section">
         <div class="pagination">
           <button (click)="goToFirst()">«</button>
@@ -144,6 +151,7 @@
       </div>
     </div>
   </div>
+  
 </div>
 
 <section class="brand-strip">

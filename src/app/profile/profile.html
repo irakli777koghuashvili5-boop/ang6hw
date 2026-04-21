@@ -55,7 +55,7 @@
         <div class="product-controls">
           <div class="quantity-selector">
             <button (click)="updateQty(item._id, -1)">-</button>
-            <input style="padding-left: 10px;" type="number" [value]=" item.cartQuantity" readonly>
+            <input style="padding-left: 10px;" type="number" [value]="item.cartQuantity" readonly>
             <button (click)="updateQty(item._id, 1)">+</button>
           </div>
 
