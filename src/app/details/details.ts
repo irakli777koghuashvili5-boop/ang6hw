@@ -25,9 +25,7 @@ export class Details {
     const emptyStars = '☆'.repeat(5 - validRating);
     return filledStars + emptyStars;
   }
-
   currentIndex: number = 0;
-
   constructor(
     private api: Api,
     private cdr: ChangeDetectorRef,
@@ -38,7 +36,6 @@ export class Details {
       console.log('Selected ID:', this.selectedId);
     });
   }
-
   ngOnInit() {
     this.api.getAll(`shop/products/id/${this.selectedId}`).subscribe((res: any) => {
       this.productArr = Object.entries(res).map(([_, value]) => value as any);
@@ -62,19 +59,15 @@ export class Details {
     });
     this.getFromCart();
   }
-
   get currentImage(): string {
     return this.images[this.currentIndex];
   }
-
   nextImage(): void {
     this.currentIndex = (this.currentIndex + 1) % this.images.length;
   }
-
   prevImage(): void {
     this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
-
   setIndex(index: number): void {
     this.currentIndex = index;
   }

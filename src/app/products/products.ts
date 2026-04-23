@@ -15,6 +15,19 @@ import { Api } from '../services/api';
 export class Products {
 
   addToCart(id: string){
+    this.api
+      .postAllHeader(`shop/cart/product`, {
+        id: id,
+        quantity: 1,
+      })
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          alert('cart created and product added!');
+          this.cdr.detectChanges();
+        },
+        error: (err) => console.log(err),
+      });
   }
 
   getStars(rating: number): string {
