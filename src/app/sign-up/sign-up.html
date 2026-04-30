@@ -9,44 +9,44 @@
     </header>
 
     @if (formVisible) {
-      <form id="form-register" (submit)="onCreateAccount()">
+      <form id="form-register" #formRegister="ngForm" (submit)="onCreateAccount(formRegister)">
         <div class="form-row">
           <div class="field-group">
-            <input [(ngModel)]="firstName" name="firstName" type="text" id="reg-fname" placeholder=" ">
+            <input ngModel name="firstName" type="text" id="reg-fname" placeholder=" ">
             <label for="reg-fname">First Name</label>
           </div>
           <div class="field-group">
-            <input [(ngModel)]="lastName" name="lastName" type="text" id="reg-lname" placeholder=" ">
+            <input ngModel name="lastName" type="text" id="reg-lname" placeholder=" ">
             <label for="reg-lname">Last Name</label>
           </div>
         </div>
 
         <div class="field-group">
-          <input [(ngModel)]="email" name="email" type="email" id="reg-email" placeholder=" ">
+          <input ngModel  [(ngModel)]="email" name="email" type="email" id="reg-email" placeholder=" ">
           <label for="reg-email">Email</label>
         </div>
 
         <div class="field-group password-group">
-          <input [(ngModel)]="password"  [ngModelOptions]="{standalone: true}"   [type]="isPasswordVisible ? 'text' : 'password'"  name="password" id="reg-pass" placeholder=" ">
+          <input ngModel    [type]="isPasswordVisible ? 'text' : 'password'"  name="password" id="reg-pass" placeholder=" ">
           <label for="reg-pass">Password</label>
           <span class="eye-icon" (click)="togglePasswordVisibility()"  > 👁</span>
         </div>
 
         <div class="form-row align-bottom">
           <div class="field-group flex-1">
-            <input [(ngModel)]="age" name="age" type="number" id="reg-age" placeholder=" ">
+            <input ngModel name="age" type="number" id="reg-age" placeholder=" ">
             <label for="reg-age">Age</label>
           </div>
           
           <div class="gender-selector">
             <div class="gender-chips">
-              <input type="radio" [(ngModel)]="gender" name="gender" value="MALE" id="male">
+              <input type="radio" ngModel name="gender" value="MALE" id="male">
               <label for="male">Male</label>
               
-              <input type="radio" [(ngModel)]="gender" name="gender" value="FEMALE" id="female">
+              <input type="radio" ngModel name="gender" value="FEMALE" id="female">
               <label for="female">Female</label>
               
-              <input type="radio" [(ngModel)]="gender" name="gender" value="OTHER" id="other">
+              <input type="radio" ngModel name="gender" value="OTHER" id="other">
               <label for="other">Other</label>
             </div>
             <span class="field-label">Gender</span>
@@ -54,22 +54,22 @@
         </div>
 
         <div class="field-group">
-          <input [(ngModel)]="address" name="address" type="text" id="reg-address" placeholder=" ">
+          <input ngModel name="address" type="text" id="reg-address" placeholder=" ">
           <label for="reg-address">Address</label>
         </div>
 
         <div class="form-row">
           <div class="field-group flex-2">
-            <input [(ngModel)]="phone" name="phone" type="tel" id="reg-phone" placeholder=" ">
+            <input ngModel name="phone" type="tel" id="reg-phone" placeholder=" ">
             <label for="reg-phone">Phone</label>
           </div>
           <div class="field-group flex-1">
-            <input [(ngModel)]="zipcode" name="zipcode" type="text" id="reg-zip" placeholder=" ">
+            <input ngModel name="zipcode" type="text" id="reg-zip" placeholder=" ">
             <label for="reg-zip">Zipcode</label>
           </div>
         </div>
 
-        <button type="submit" class="btn-create">
+        <button type="submit" [disabled]="formRegister.invalid" class="btn-create">
           Create Account
         </button>
       </form>

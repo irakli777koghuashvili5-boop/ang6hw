@@ -3,6 +3,7 @@ import { RouterLink } from "@angular/router";
 import { Api } from '../services/api';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,15 +19,7 @@ export class SignUp {
 
   formVisible: boolean = true;
   confirmationVisible: boolean = false;
-  firstName = '';
-  lastName = '';
-  age = 1;
   email = '';
-  password = '';
-  address = '';
-  phone = '';
-  zipcode = '';
-  gender = 'MALE';
   avatar = 'https://api.dicebear.com/9.x/adventurer/svg?seed=Aiden';
 
   isPasswordVisible = false;
@@ -35,21 +28,12 @@ export class SignUp {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  onCreateAccount() {
-    const userData = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      age: this.age,
-      email: this.email,
-      password: this.password,
-      address: this.address,
-      phone: this.phone,
-      zipcode: this.zipcode,
-      avatar: this.avatar,
-      gender: this.gender,
-    };
+  onCreateAccount(form : any) {
 
-    this.api.postAll(`auth/sign_up`, userData).subscribe({
+    this.api.postAll(`auth/sign_up`, {
+      ...form.value,
+      avatar: this.avatar,
+    }).subscribe({
       next: (res: any) => {
         if (res && res._id) {
           this.formVisible = false;
@@ -74,6 +58,3 @@ export class SignUp {
     console.log('Component Initialized');
   }
 }
-
-
-

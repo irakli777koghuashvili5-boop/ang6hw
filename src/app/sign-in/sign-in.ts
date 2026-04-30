@@ -13,8 +13,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class SignIn {
   mainResp: any = {};
-  email = '';
-  password = '';
   firstname = localStorage.getItem('firstName');
   isPasswordVisible = false; 
 
@@ -28,13 +26,9 @@ export class SignIn {
     private router: Router,
   ) {}
 
-  onClickSignIn() {
-    const userData = {
-      email: this.email,
-      password: this.password,
-    };
+  onClickSignIn(form : any) {
 
-    this.api.postAll(`auth/sign_in`, userData).subscribe({
+    this.api.postAll(`auth/sign_in`, form.value).subscribe({
       next: (res: any) => {
         if (res.access_token && res.refresh_token) {
           localStorage.setItem('access_token', res.access_token);
@@ -59,9 +53,9 @@ export class SignIn {
                 const status = err.status || err.error?.statusCode;
 
                 if (status === 409) {
-                  alert('Email not verified. Confirmation email sent to ' + this.email);
+                  alert('Email not verified. Confirmation email sent to ' + form.value.email);
 
-                  this.api.postAll(`auth/verify_email`, { email: this.email }).subscribe({
+                  this.api.postAll(`auth/verify_email`, { email:  form.value.email }).subscribe({
                     next: (res2: any) => console.log('Verification sent:', res2),
                     error: (errVerify: any) => {
                       alert('Failed to send confirmation email.');

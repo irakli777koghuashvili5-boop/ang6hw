@@ -8,16 +8,14 @@
       </p>
     </header>
 
-    <form id="form-login"  (submit)="onClickSignIn()">
+    <form id="form-login" #formLogin="ngForm" (submit)="onClickSignIn(formLogin)">
       <div class="field-group" id="group-email">
-        <input [(ngModel)]="email" 
-          [ngModelOptions]="{standalone: true}" type="email" id="input-email" placeholder="Email address" name="email">
+        <input ngModel type="email" id="input-email" placeholder="Email address" name="email">
       </div>
 
   <div class="field-group password-group" id="group-password">
   <input 
-    [(ngModel)]="password" 
-    [ngModelOptions]="{standalone: true}" 
+    ngModel
     [type]="isPasswordVisible ? 'text' : 'password'" 
     id="input-pass" 
     placeholder="Password" 
@@ -37,7 +35,7 @@
         <a routerLink="/recover-passcode" class="forgot-link" id="link-forgot">Forgot password?</a>
       </div>
 
-      <button type="submit" class="btn-signin" id="btn-submit">Sign In</button>
+      <button type="submit" [disabled]="formLogin.invalid" class="btn-signin" id="btn-submit">Sign In</button>
     </form>
 
     <div class="divider" id="separator">
