@@ -13,8 +13,7 @@ import { Api } from '../services/api';
   styleUrl: './products.scss',
 })
 export class Products {
-
-  addToCart(id: string){
+  addToCart(id: string) {
     this.api
       .postAllHeader(`shop/cart/product`, {
         id: id,
@@ -23,7 +22,7 @@ export class Products {
       .subscribe({
         next: (res) => {
           console.log(res);
-          alert('cart created and product added!');
+          this.api.show('cart created and product added!');
           this.cdr.detectChanges();
         },
         error: (err) => console.log(err),
@@ -31,15 +30,15 @@ export class Products {
   }
 
   getStars(rating: number): string {
-    const validRating = Math.max(0, rating || 0);
-    const filledStars = '⭐'.repeat(validRating);
-    const emptyStars = '☆'.repeat(5 - validRating);
+    let validRating = Math.max(0, rating || 0);
+    let filledStars = '⭐'.repeat(validRating);
+    let emptyStars = '☆'.repeat(5 - validRating);
     return filledStars + emptyStars;
   }
 
   carouselImages: string[] = [
-    'https://imgstore.alta.ge/images/b9a2676e-f771-4c0c-a4a4-c22f2be77bf61e707548-c487-4906-b655-dce76ab55d99.jpeg',
-    'https://imgstore.alta.ge/images/51234eed-cdc6-48a5-9939-7ce2d9bada99d1700f8e-e42f-472d-baf7-ad117db20341.jpeg',
+    'https://imgstore.alta.ge/images/956567e7-225c-46c0-9a29-51f9042e263cbc37913c-88c7-4f91-a08c-d6fe06059b2f.png',
+    'https://imgstore.alta.ge/images/f6c861d8-55d2-43b0-8f31-075b32b648522980bf03-f2ab-4f57-8b61-dae67a049f39.jpeg',
     'https://imgstore.alta.ge/images/245546b4-46ca-417b-b980-3695a92b807fa11a5bf3-fc10-454c-8311-dcb6af92239d.png',
     'https://imgstore.alta.ge/images/3917999c-b426-44a3-9bbe-f1b33c394024c8b5ddc4-b3af-4908-b3a8-fe57aba6ccc6.png',
   ];
@@ -162,7 +161,8 @@ export class Products {
         params[key] === undefined ||
         params[key] === '' ||
         params[key].length === 0
-      ) {1
+      ) {
+        1;
         delete params[key];
       }
     });

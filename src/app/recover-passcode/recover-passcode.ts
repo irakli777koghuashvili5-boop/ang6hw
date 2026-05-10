@@ -19,7 +19,7 @@ export class RecoverPasscode {
     }).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          alert(res.message)
+          this.api.show(res.message)
         } 
       }
     }

@@ -102,7 +102,7 @@ export class Profile {
         },
         error: (err) => {
           console.error('Failed to update quantity', err);
-          alert('Could not update quantity. Please try again.');
+          this.api.show('Could not update quantity. Please try again.');
         },
       });
     }
@@ -134,7 +134,7 @@ export class Profile {
 checkOut(){
   this.api.postAllHeader('shop/cart/checkout', {}).subscribe({
     next: (res => {
-      alert(`succesfully checkedout`)
+      this.api.show(`succesfully checkedout`)
     }),
     error: (err => console.log(err))
   })
@@ -178,13 +178,13 @@ checkOut(){
     const apiurl = `auth/update`;
     this.api.patchData(apiurl, this.arrOfProfile).subscribe({
       next: (res) => {
-        alert('Profile updated successfully');
+        this.api.show('Profile updated successfully');
         this.showEditPopup = false;
         this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Update failed:', err);
-        alert('Failed to update profile');
+        this.api.show('Failed to update profile');
       },
     });
   }
@@ -193,7 +193,7 @@ checkOut(){
     const apiurL = `auth/delete`;
     this.api.deleteData(apiurL, this.arrOfProfile).subscribe({
       next: (res) => {
-        alert('Account deleted successfully');
+        this.api.show('Account deleted successfully');
         this.cdr.detectChanges();
         localStorage.removeItem(`access_token`);
         localStorage.removeItem(`refresh_token`);
@@ -203,7 +203,7 @@ checkOut(){
       },
       error: (err) => {
         console.error('Delete failed:', err);
-        alert('Failed to delete account');
+        this.api.show('Failed to delete account');
       },
     });
   }

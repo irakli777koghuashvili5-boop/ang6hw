@@ -42,7 +42,7 @@ export class SignIn {
             })
             .subscribe({
               next: (res1: any) => {
-                alert(`Welcome back`);
+                this.api.show(`Welcome back`);
                 localStorage.setItem('userId', res1._id);
                 localStorage.setItem('firstName', res1.firstName);
                 localStorage.setItem(`avatar`, res1.avatar);
@@ -52,18 +52,23 @@ export class SignIn {
               error: (err: any) => {
                 const status = err.status || err.error?.statusCode;
 
+                if(status === 400){
+                  this.api.show(`Wrong email or password`);
+                  this.cdr.detectChanges()
+                }
+
                 if (status === 409) {
-                  alert('Email not verified. Confirmation email sent to ' + form.value.email);
+                  this.api.show('Email not verified. Confirmation email sent to ' + form.value.email);
 
                   this.api.postAll(`auth/verify_email`, { email:  form.value.email }).subscribe({
                     next: (res2: any) => console.log('Verification sent:', res2),
                     error: (errVerify: any) => {
-                      alert('Failed to send confirmation email.');
+                      this.api.show('Failed to send confirmation email.');
                       console.error(errVerify);
                     },
                   });
                 } else {
-                  alert(`Failed to load user profile.`);
+                  this.api.show(`Failed to load user profile.`);
                 }
                 this.cdr.detectChanges();
               },
@@ -73,7 +78,7 @@ export class SignIn {
       error: (err: any) => {
         const status = err.status || err.error?.statusCode;
         if (status === 400 || status === 401) {
-          alert(`Wrong email or password`);
+          this.api.show(`Wrong email or password`);
         }
         this.cdr.detectChanges();
       },

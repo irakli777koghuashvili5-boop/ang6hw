@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { Product } from '../model/model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +47,28 @@ export class Api {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access_token')} `,
       },
-      body: body, 
+      body: body,
+    });
+  }
+
+  private alertState = new BehaviorSubject<{
+    open: boolean;
+    message: string;
+  }>({ open: false, message: '' });
+
+  alert$ = this.alertState.asObservable();
+
+  show(message: string) {
+    this.alertState.next({
+      open: true,
+      message: message,
+    });
+  }
+
+  hide() {
+    this.alertState.next({
+      open: false,
+      message: '',
     });
   }
 }

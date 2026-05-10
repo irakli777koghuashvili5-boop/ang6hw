@@ -1,0 +1,94 @@
+.alertBody {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 20px;
+
+  z-index: 10989999;
+
+  animation: fadeIn 0.5s ease;
+}
+
+.alertText {
+  width: 280px;
+  background: white;
+  border: 2px solid orange;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(255, 165, 0, 0.25);
+
+  transition: 0.3s ease;
+
+  animation: popUp 0.35s ease;
+}
+
+.alertText:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 165, 0, 0.4);
+  border-color: #ff8800;
+}
+
+.alertTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.alertTop h2 {
+  color: orange;
+  font-size: 22px;
+  margin: 0;
+}
+
+.alertMiddle p {
+  color: #333;
+  font-size: 15px;
+  margin: 0;
+}
+
+.alertClose {
+  border: none;
+  background: orange;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+
+  transition: 0.25s ease;
+}
+
+.alertClose:hover {
+  background: white;
+  color: orange;
+  border: 2px solid orange;
+  transform: rotate(90deg);
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

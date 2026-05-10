@@ -1,0 +1,19 @@
+@if (alertOpen) {
+  <div class="alertBody" (click)="closeAlert()">
+
+    <div class="alertText" (click)="$event.stopPropagation()">
+
+      <div class="alertTop">
+        <h2>Alert</h2>
+
+        <button class="alertClose" (click)="closeAlert()">×</button>
+      </div>
+
+      <div class="alertMiddle">
+        <p>{{ message }}</p>
+      </div>
+
+    </div>
+
+  </div>
+}

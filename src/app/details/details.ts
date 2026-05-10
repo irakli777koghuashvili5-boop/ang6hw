@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Api } from '../services/api';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { header } from 'framer-motion/client';
 
 @Component({
   selector: 'app-details',
@@ -103,7 +102,7 @@ export class Details {
         })
         .subscribe({
           next: (res) => {
-            alert('cart created and product added!');
+            this.api.show('cart created and product added!');
             this.getFromCart(); 
           },
           error: (err) => console.log( err),
@@ -121,7 +120,7 @@ export class Details {
         })
         .subscribe({
           next: (res) => {
-            alert(existingProduct ? 'Quantity updated' : 'New product added to cart');
+            this.api.show(existingProduct ? 'Quantity updated' : 'New product added to cart');
             this.getFromCart();
           },
           error: (err) => {

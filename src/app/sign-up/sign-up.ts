@@ -37,9 +37,14 @@ export class SignUp {
       next: (res: any) => {
         if (res && res._id) {
           this.formVisible = false;
+          this.api.show('Account created successfully.');
           this.confirmationVisible = true;
           this.cdr.detectChanges();
         }
+        },
+      error: (err: any) => {
+        this.api.show('Failed to create account.');
+        this.cdr.detectChanges();
       },
     });
   }
@@ -49,6 +54,12 @@ export class SignUp {
     this.api.postAll(`auth/verify_email`, { email: this.email }).subscribe({
       next: (res: any) => {
         console.log(res);
+        this.api.show('Confirmation email sent to ' + this.email);
+        this.cdr.detectChanges();
+      },
+      error: (err: any) => {
+        console.log(err);
+        this.api.show('Failed to send confirmation email.');
         this.cdr.detectChanges();
       },
     });
