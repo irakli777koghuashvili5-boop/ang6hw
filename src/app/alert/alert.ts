@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Api } from '../services/api';
 
@@ -13,11 +13,17 @@ export class Alert {
   alertOpen = false;
   message = '';
 
-  constructor(private alertService: Api) {
+  constructor(private alertService: Api, private cdr: ChangeDetectorRef) {
+
+
     this.alertService.alert$.subscribe((data: any) => {
       this.alertOpen = data.open;
       this.message = data.message;
-    });
+
+
+      this.cdr.detectChanges()
+    }
+  );
   }
 
   closeAlert() {

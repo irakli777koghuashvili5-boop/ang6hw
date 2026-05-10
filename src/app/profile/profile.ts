@@ -134,13 +134,16 @@ export class Profile {
 checkOut(){
   this.api.postAllHeader('shop/cart/checkout', {}).subscribe({
     next: (res => {
-      this.api.show(`succesfully checkedout`)
+      this.api.show(`succesfully checked out`)
+      this.loadCartAndProduct();
+      this.cdr.detectChanges()
     }),
     error: (err => console.log(err))
   })
 }
 
   logOutFn() {
+    this.api.show('Logged out successfully');
     localStorage.removeItem(`access_token`);
     localStorage.removeItem(`firstName`);
     localStorage.removeItem(`userId`);
@@ -162,7 +165,7 @@ checkOut(){
       })
       .subscribe({
         next: (res) => {
-          console.log('Password changed successfully:', res);
+          this.api.show('Password changed successfully:');
           this.oldPassword = '';
           this.newPassword = '';
           this.showPopup = false;
