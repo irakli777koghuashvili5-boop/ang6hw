@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { Api } from '../services/api';
 
@@ -25,7 +25,14 @@ export class Products {
           this.api.show('cart created and product added!');
           this.cdr.detectChanges();
         },
-        error: (err) => console.log(err),
+        error: (err) => {
+          console.error(err);
+          if (err.status === 400) {
+            this.router.navigateByUrl('/sign-in');
+            this.api.show('Log In First');
+            
+          }
+        },
       });
   }
 
@@ -99,6 +106,7 @@ export class Products {
   constructor(
     private api: Api,
     private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit() {

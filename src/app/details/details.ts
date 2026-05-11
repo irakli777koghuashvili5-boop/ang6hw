@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Api } from '../services/api';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +29,7 @@ export class Details {
     private api: Api,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
+    private router: Router
   ) {
     this.route.queryParams.subscribe((params) => {
       this.selectedId = params['id'];
@@ -105,7 +106,13 @@ export class Details {
             this.api.show('cart created and product added!');
             this.getFromCart(); 
           },
-          error: (err) => console.log( err),
+          error: (err) => {
+            console.error(err);
+            if(err.status === 400){
+              this.api.show('Log In First')
+              this.router.navigateByUrl('/sign-in')
+            }
+          },
         });
     }
 
