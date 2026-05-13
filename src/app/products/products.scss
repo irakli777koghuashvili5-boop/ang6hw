@@ -850,4 +850,953 @@ $w: #fff;
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+/* =========================
+   GLOBAL RESPONSIVE FIXES
+========================= */
+
+* {
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+img {
+  max-width: 100% !important;
+  display: block !important;
+}
+
+/* =========================
+   PAGE CONTAINER
+========================= */
+
+.page-container {
+  width: 100% !important;
+  max-width: 1800px !important;
+  margin: 0 auto !important;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.mainsec {
+  width: 100% !important;
+  align-items: flex-start !important;
+}
+
+.product-listing {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+/* =========================
+   FILTER PANEL
+========================= */
+
+#filter-panel {
+  backdrop-filter: blur(18px) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06) !important;
+}
+
+#search-input,
+#brand-select,
+#price-inputs input,
+.sel,
+.select-size {
+  min-height: 46px !important;
+  font-size: 15px !important;
+  transition: 0.25s ease !important;
+}
+
+#search-input:focus,
+#brand-select:focus,
+#price-inputs input:focus,
+.sel:focus,
+.select-size:focus {
+  outline: none !important;
+  border-color: #2a9d8f !important;
+  box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.12) !important;
+}
+
+/* =========================
+   CAROUSEL
+========================= */
+
+.custom-carousel {
+  width: 100% !important;
+  border-radius: 28px !important;
+}
+
+.custom-carousel .carousel-slide img {
+  object-fit: contain !important;
+  padding: 24px !important;
+}
+
+.custom-carousel .nav-btn {
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08) !important;
+}
+
+.custom-carousel .nav-btn:hover {
+  transform: translateY(-50%) scale(1.12) !important;
+}
+
+/* =========================
+   HEADING SECTION
+========================= */
+
+.heading-section {
+  width: 100% !important;
+}
+
+.hh1 {
+  line-height: 1.1 !important;
+  word-break: break-word !important;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+
+.child {
+  width: 100% !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  align-items: stretch !important;
+}
+
+/* =========================
+   CARD IMPROVEMENTS
+========================= */
+
+.card {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border-radius: 26px !important;
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease !important;
+}
+
+.card:hover {
+  transform: translateY(-8px) !important;
+}
+
+.card .img-wrapper {
+  min-height: 240px !important;
+}
+
+.card .img-wrapper img {
+  transition: transform 0.4s ease !important;
+}
+
+.card:hover .img-wrapper img {
+  transform: scale(1.06) !important;
+}
+
+.card-content {
+  width: 100% !important;
+}
+
+.title {
+  word-break: break-word !important;
+}
+
+.price-row {
+  flex-wrap: wrap !important;
+}
+
+.actions {
+  width: 100% !important;
+  flex-wrap: wrap !important;
+}
+
+.actions .cart {
+  min-width: 140px !important;
+}
+
+.actions button {
+  min-height: 48px !important;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.pagination-section {
+  width: 100% !important;
+}
+
+.pagination {
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+.pagination button {
+  min-width: 42px !important;
+  min-height: 42px !important;
+}
+
+/* =========================
+   BRAND STRIP
+========================= */
+
+.brand-strip {
+  border-radius: 30px !important;
+}
+
+.brand-strip .brand {
+  user-select: none !important;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1200px) {
+
+  .heading-section {
+    padding: 0 20px !important;
+  }
+
+  .child {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .mainsec {
+    flex-direction: column !important;
+  }
+
+  #filter-panel {
+    width: calc(100% - 20px) !important;
+    left: 50% !important;
+    transform: translate(-50%, -30px) !important;
+  }
+
+  #filter-panel.active {
+    transform: translate(-50%, 0) !important;
+  }
+
+  .product-listing {
+    width: 100% !important;
+  }
+
+  .custom-carousel {
+    height: 320px !important;
+  }
+
+  .heading-section {
+    gap: 20px !important;
+  }
+
+  .pagination-section {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  :host {
+    padding: 14px !important;
+  }
+
+  .custom-carousel {
+    height: 240px !important;
+    border-radius: 22px !important;
+  }
+
+  .custom-carousel .carousel-slide img {
+    padding: 12px !important;
+  }
+
+  .hh1 {
+    font-size: 1.7rem !important;
+  }
+
+  .child {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  .card {
+    border-radius: 22px !important;
+  }
+
+  .card .img-wrapper {
+    min-height: 190px !important;
+    padding: 16px !important;
+  }
+
+  .actions {
+    flex-direction: column !important;
+  }
+
+  .actions .heart,
+  .actions .cart {
+    width: 100% !important;
+  }
+
+  .brand-strip {
+    padding: 50px 20px !important;
+  }
+
+  .track-inner {
+    gap: 60px !important;
+  }
+}
+
+@media (max-width: 576px) {
+
+  :host {
+    padding: 10px !important;
+  }
+
+  .heading-section {
+    padding: 0 !important;
+  }
+
+  .hh1 {
+    font-size: 1.35rem !important;
+  }
+
+  .custom-carousel {
+    height: 180px !important;
+    border-radius: 18px !important;
+  }
+
+  .nav-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .child {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    width: 100% !important;
+  }
+
+  .card .img-wrapper {
+    min-height: 220px !important;
+  }
+
+  .pagination {
+    width: 100% !important;
+  }
+
+  .pagination button {
+    flex: 1 !important;
+  }
+
+  .filter-mobile-btn {
+    width: 100% !important;
+  }
+
+  #filter-panel {
+    width: calc(100% - 12px) !important;
+    padding: 30px 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .back-to-top {
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+
+  .hh1 {
+    font-size: 1.1rem !important;
+  }
+
+  .price {
+    font-size: 1.1rem !important;
+  }
+
+  .old-price {
+    font-size: 0.8rem !important;
+  }
+
+  .card-content {
+    padding: 16px !important;
+  }
+
+  .actions .cart {
+    font-size: 13px !important;
+  }
+}
+
+/* =========================
+   SMOOTHNESS
+========================= */
+
+button,
+input,
+select,
+.card,
+.nav-btn,
+.dot {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+button {
+  touch-action: manipulation !important;
+}
+
+/* =========================
+   IOS FIXES
+========================= */
+
+input,
+select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-overlay {
+  width: 100% !important;
+  padding: 40px 20px !important;
+}
+
+.spinner {
+  flex-shrink: 0 !important;
+}
+/* =========================
+   FIX HEADING SECTION
+========================= */
+
+.heading-section {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+
+  width: 100% !important;
+
+  gap: 20px !important;
+
+  padding: 0 10px !important;
+  margin-bottom: 32px !important;
+
+  flex-wrap: wrap !important;
+}
+
+.heading-section .h {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.hh1 {
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: end !important;
+
+
+  font-size: clamp(1.4rem, 3vw, 2.2rem) !important;
+  font-weight: 800 !important;
+
+  color: #1a1f36 !important;
+
+  line-height: 1.1 !important;
+  letter-spacing: -0.5px !important;
+
+  word-break: break-word !important;
+}
+
+.sele {
+  flex-shrink: 0 !important;
+}
+
+.selet {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+
+  background: rgba(255,255,255,0.75) !important;
+
+  padding: 10px 14px !important;
+
+  border-radius: 16px !important;
+
+  border: 1px solid rgba(0,0,0,0.06) !important;
+
+  backdrop-filter: blur(10px) !important;
+}
+
+.selet p {
+  margin: 0 !important;
+
+  font-size: 15px !important;
+  font-weight: 600 !important;
+
+  color: #64748b !important;
+
+  white-space: nowrap !important;
+}
+
+.sel {
+  min-width: 140px !important;
+
+  border-radius: 12px !important;
+
+  border: 1px solid rgba(0,0,0,0.08) !important;
+
+  background: white !important;
+
+  font-weight: 600 !important;
+
+  cursor: pointer !important;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+  .heading-section {
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    gap: 16px !important;
+  }
+
+  .sele {
+    width: 100% !important;
+  }
+
+  .selet {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .sel {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .hh1 {
+    text-align: center !important;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 576px) {
+
+  .heading-section {
+    margin-bottom: 22px !important;
+  }
+
+  .hh1 {
+    font-size: 1.25rem !important;
+    text-align: left !important;
+  }
+
+  .selet {
+    padding: 10px 12px !important;
+  }
+
+  .selet p {
+    font-size: 14px !important;
+  }
+
+  .sel {
+    font-size: 14px !important;
+  }
+}
+
+/* =========================
+   SAME WIDTH FOR EVERYTHING
+========================= */
+
+.page-container,
+.mainsec,
+.heading-section,
+.custom-carousel,
+.brand-strip,
+.pagination-section {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.heading-section {
+  padding: 0 !important;
+}
+
+.brand-strip {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+  border-radius: 30px !important;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.mainsec {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 28px !important;
+}
+
+.product-listing {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* =========================
+   FILTER FULLSCREEN MOBILE
+========================= */
+
+.filter-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  background: rgba(10, 15, 25, 0.6) !important;
+
+  backdrop-filter: blur(14px) !important;
+
+  z-index: 9998 !important;
+
+  opacity: 0 !important;
+  visibility: hidden !important;
+
+  transition: 0.3s ease !important;
+}
+
+.filter-overlay.show {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* =========================
+   FILTER PANEL
+========================= */
+
+#filter-panel {
+  background: rgba(255,255,255,0.95) !important;
+
+  backdrop-filter: blur(24px) !important;
+
+  border: 1px solid rgba(255,255,255,0.2) !important;
+
+  box-shadow: 0 25px 80px rgba(0,0,0,0.18) !important;
+}
+
+/* =========================
+   MOBILE FILTER = FULLSCREEN
+========================= */
+
+@media (max-width: 992px) {
+
+  #filter-panel {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+
+    border-radius: 0 !important;
+
+    padding: 90px 24px 40px !important;
+
+
+    z-index: 9912121299 !important;
+    overflow-y: hidden !important;
+
+    transform: translateY(100%) !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  #filter-panel.active {
+    transform: translateY(0) !important;
+  }
+
+  .close-sidebar {
+    position: fixed !important;
+
+    top: 20px !important;
+    right: 20px !important;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    background: white !important;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+
+    z-index: 10000 !important;
+  }
+
+  .filter-mobile-btn {
+    width: 100% !important;
+
+    max-width: 260px !important;
+
+    margin: 0 auto 20px !important;
+  }
+
+  .mainsec {
+    flex-direction: column !important;
+  }
+}
+
+/* =========================
+   FILTER CONTENT SPACING
+========================= */
+
+#filter-search,
+#filter-categories,
+#filter-price,
+#filter-brands {
+  margin-bottom: 28px !important;
+}
+
+#filter-panel h4 {
+  font-size: 0.85rem !important;
+
+  letter-spacing: 1px !important;
+
+  margin-bottom: 16px !important;
+}
+
+/* =========================
+   FILTER BUTTONS
+========================= */
+
+#filter-actions {
+  margin-top: 40px !important;
+}
+
+#filter-actions button {
+  min-height: 52px !important;
+
+  border-radius: 14px !important;
+
+  font-size: 15px !important;
+
+  font-weight: 700 !important;
+}
+
+/* =========================
+   RESPONSIVE WIDTH FIXES
+========================= */
+
+@media (max-width: 1450px) {
+
+  .page-container,
+  .mainsec,
+  .heading-section,
+  .custom-carousel,
+  .brand-strip,
+  .pagination-section {
+    width: calc(100% - 30px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .page-container,
+  .mainsec,
+  .heading-section,
+  .custom-carousel,
+  .brand-strip,
+  .pagination-section {
+    width: calc(100% - 20px) !important;
+  }
+
+  .brand-strip {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .page-container,
+  .mainsec,
+  .heading-section,
+  .custom-carousel,
+  .brand-strip,
+  .pagination-section {
+    width: calc(100% - 12px) !important;
+  }
+}
+/* =========================
+   FIX CHECKBOXES
+========================= */
+
+#filter-categories .category-list label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+
+
+  border-radius: 14px !important;
+
+  cursor: pointer !important;
+
+  user-select: none !important;
+
+  transition: 0.2s ease !important;
+}
+
+#filter-categories .category-list label:hover {
+  background: rgba(0,0,0,0.04) !important;
+}
+
+/* IMPORTANT FIX */
+
+#filter-categories .category-list input[type="checkbox"] {
+  appearance: auto !important;
+  -webkit-appearance: checkbox !important;
+
+  display: block !important;
+
+  width: 18px !important;
+  height: 18px !important;
+
+  min-width: 18px !important;
+  min-height: 18px !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  accent-color: #2a9d8f !important;
+
+  cursor: pointer !important;
+}
+
+/* =========================
+   CLOSE BUTTON FIX
+========================= */
+
+.close-sidebar {
+  display: flex !important;
+
+  justify-content: center !important;
+  align-items: center !important;
+
+  position: fixed !important;
+
+  top: 18px !important;
+  right: 18px !important;
+
+  width: 52px !important;
+  height: 52px !important;
+
+  border: none !important;
+
+  border-radius: 50% !important;
+
+  background: rgba(255,255,255,0.92) !important;
+
+  backdrop-filter: blur(12px) !important;
+
+  color: #111 !important;
+
+  font-size: 28px !important;
+  font-weight: 300 !important;
+
+  cursor: pointer !important;
+
+  z-index: 10001 !important;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+
+  transition: 0.25s ease !important;
+}
+
+.close-sidebar:hover {
+  transform: rotate(90deg) scale(1.06) !important;
+
+  background: white !important;
+}
+
+/* =========================
+   ADD TOP BAR INSIDE FILTER
+========================= */
+
+#filter-panel::before {
+  content: "Filters" !important;
+
+  position: fixed !important;
+
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 100% !important;
+  height: 78px !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  padding-left: 24px !important;
+
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+
+  background: rgba(255,255,255,0.9) !important;
+
+  backdrop-filter: blur(18px) !important;
+
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+
+  z-index: 9999 !important;
+}
+
+/* =========================
+   EXTRA CLOSE AREA
+========================= */
+
+.filter-overlay {
+  cursor: pointer !important;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 993px) {
+
+  #filter-panel::before {
+    display: none !important;
+  }
+
+  .close-sidebar {
+    display: none !important;
+  }
+}
 

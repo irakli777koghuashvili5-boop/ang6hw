@@ -108,10 +108,6 @@ export class Details {
           },
           error: (err) => {
             console.error(err);
-            if(err.status === 400){
-              this.api.show('Log In First')
-              this.router.navigateByUrl('/sign-in')
-            }
           },
         });
     }

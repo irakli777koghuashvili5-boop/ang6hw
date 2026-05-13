@@ -27,11 +27,6 @@ export class Products {
         },
         error: (err) => {
           console.error(err);
-          if (err.status === 400) {
-            this.router.navigateByUrl('/sign-in');
-            this.api.show('Log In First');
-            
-          }
         },
       });
   }
