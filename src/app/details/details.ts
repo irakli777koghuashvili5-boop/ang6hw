@@ -107,6 +107,9 @@ export class Details {
             this.getFromCart(); 
           },
           error: (err) => {
+            if(err.status === 401){
+              this.api.show("Log in First")
+            }
             console.error(err);
           },
         });

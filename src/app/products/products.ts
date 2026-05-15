@@ -27,6 +27,10 @@ export class Products {
         },
         error: (err) => {
           console.error(err);
+          if(err.status === 401 || err.status === 400){
+            this.api.show("Log In First")
+            this.router.navigateByUrl('/sign-in')
+          }
         },
       });
   }
@@ -52,7 +56,7 @@ export class Products {
   startAutoPlay() {
     this.carouselInterval = setInterval(() => {
       this.nextSlide();
-    }, 2000);
+    }, 5000);
   }
 
   nextSlide() {
