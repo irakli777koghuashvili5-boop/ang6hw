@@ -1,94 +1,362 @@
+/* ================================
+   COLOR & TYPOGRAPHY PALETTE
+================================ */
+
+$primary: #3b82f6;        // Vibrant sapphire blue
+$primary-light: #60a5fa;
+$primary-dark: #1e40af;
+$accent: #ec4899;         // Soft pink accent
+$success: #10b981;        // Green for success alerts
+$warning: #f59e0b;        // Amber for warnings
+$danger: #ef4444;         // Red for errors
+$info: #06b6d4;           // Cyan for info
+$bg-light: #f8fafc;       // Almost white with blue tint
+$bg-white: #ffffff;
+$text-dark: #1e293b;      // Charcoal
+$text-muted: #64748b;     // Slate gray
+$border: #e2e8f0;         // Light slate
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 12px rgba(59, 130, 246, 0.08);
+$shadow-lg: 0 20px 40px rgba(59, 130, 246, 0.12);
+
+/* ================================
+   ALERT OVERLAY
+================================ */
+
 .alertBody {
   position: fixed;
   inset: 0;
-
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
-  padding-top: 20px;
-
-  z-index: 10989999;
-
-  animation: fadeIn 0.5s ease;
+  padding: 20px;
+  padding-top: 60px;
+  top: 40px;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ================================
+   ALERT CONTAINER
+================================ */
 
 .alertText {
-  width: 280px;
-  background: white;
-  border: 2px solid orange;
+  width: 100%;
+  max-width: 420px;
+  background: $bg-white;
+  border: 1.5px solid $border;
   border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 10px 30px rgba(255, 165, 0, 0.25);
+  padding: 28px;
+  box-shadow: $shadow-lg;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideDown 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  position: relative;
 
-  transition: 0.3s ease;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $primary, $accent);
+  }
 
-  animation: popUp 0.35s ease;
+  &:hover {
+    border-color: $primary;
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2);
+  }
 }
 
-.alertText:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(255, 165, 0, 0.4);
-  border-color: #ff8800;
+/* ================================
+   ALERT VARIANTS
+================================ */
+
+.alertText {
+  &.success {
+    border-color: rgba($success, 0.2);
+
+    .alertTop h2 {
+      color: $success;
+    }
+
+    .alertTop .alertIcon i {
+      color: $success;
+    }
+
+    &::before {
+      background: linear-gradient(90deg, $success, $primary);
+    }
+  }
+
+  &.warning {
+    border-color: rgba($warning, 0.2);
+
+    .alertTop h2 {
+      color: $warning;
+    }
+
+    .alertTop .alertIcon i {
+      color: $warning;
+    }
+
+    &::before {
+      background: linear-gradient(90deg, $warning, $primary);
+    }
+  }
+
+  &.error {
+    border-color: rgba($danger, 0.2);
+
+    .alertTop h2 {
+      color: $danger;
+    }
+
+    .alertTop .alertIcon i {
+      color: $danger;
+    }
+
+    &::before {
+      background: linear-gradient(90deg, $danger, $warning);
+    }
+  }
+
+  &.info {
+    border-color: rgba($info, 0.2);
+
+    .alertTop h2 {
+      color: $info;
+    }
+
+    .alertTop .alertIcon i {
+      color: $info;
+    }
+
+    &::before {
+      background: linear-gradient(90deg, $info, $primary);
+    }
+  }
 }
+
+/* ================================
+   ALERT TOP (HEADER)
+================================ */
 
 .alertTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: $primary;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .alertIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+
+    i {
+      font-size: 1.2em;
+      color: $primary;
+    }
+  }
 }
 
-.alertTop h2 {
-  color: orange;
-  font-size: 22px;
-  margin: 0;
+/* ================================
+   ALERT MIDDLE (CONTENT)
+================================ */
+
+.alertMiddle {
+  p {
+    margin: 0;
+    color: $text-dark;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
 }
 
-.alertMiddle p {
-  color: #333;
-  font-size: 15px;
-  margin: 0;
-}
+/* ================================
+   ALERT CLOSE BUTTON
+================================ */
 
 .alertClose {
+  width: 36px;
+  height: 36px;
   border: none;
-  background: orange;
-  color: white;
-  width: 32px;
-  height: 32px;
+  background: linear-gradient(135deg, rgba($primary, 0.1), rgba($accent, 0.1));
+  color: $primary;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid transparent;
 
-  transition: 0.25s ease;
-}
-
-.alertClose:hover {
-  background: white;
-  color: orange;
-  border: 2px solid orange;
-  transform: rotate(90deg);
-}
-
-@keyframes popUp {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
+  &:hover {
+    background: $primary;
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
+  &:active {
+    transform: rotate(90deg) scale(0.95);
   }
 }
+
+/* ================================
+   ANIMATIONS
+================================ */
 
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 576px) {
+  .alertBody {
+    padding: 16px;
+    padding-top: 40px;
+    align-items: flex-start;
+  }
+
+  .alertText {
+    max-width: 100%;
+    padding: 20px;
+
+    &::before {
+      height: 3px;
+    }
+  }
+
+  .alertTop {
+    h2 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .alertIcon {
+      width: 24px;
+      height: 24px;
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .alertMiddle p {
+    font-size: 13px;
+  }
+
+  .alertClose {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+.alertBody {
+  &:focus-within {
+    .alertText {
+      border-color: $primary;
+    }
+  }
+}
+
+.alertClose {
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+/* ================================
+   ALERT WITH ACTIONS
+================================ */
+
+.alertActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid $border;
+
+  button {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.btn-primary {
+      background: $primary;
+      color: white;
+
+      &:hover {
+        background: $primary-dark;
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+      }
+    }
+
+    &.btn-secondary {
+      background: $bg-light;
+      color: $text-dark;
+      border: 1.5px solid $border;
+
+      &:hover {
+        background: $border;
+        border-color: $primary;
+      }
+    }
   }
 }

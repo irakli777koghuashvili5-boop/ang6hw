@@ -26,7 +26,7 @@ export class Header {
   }
 
   checkAuthentication() {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('access_token');
     if (userId) {
       this.seeSign = false;
     }

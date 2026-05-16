@@ -1,17 +1,37 @@
 <div class="product-page">
-  <nav class="breadcrumb">
-    Products > Details
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <span>Products</span>
+    <span>Details</span>
   </nav>
 
+  <!-- Main Product Container -->
   <div class="product-container">
+    <!-- Gallery Section -->
     <div class="gallery-section" id="image-carousel">
       <div class="main-image-container" id="main-view">
-        <img [src]="currentImage" [alt]="'Product Image ' + (currentIndex + 1)" id="current-product-img">
+        <img 
+          [src]="currentImage" 
+          [alt]="'Product Image ' + (currentIndex + 1)" 
+          id="current-product-img">
 
-        <button class="nav-btn prev" id="btn-prev-img" (click)="prevImage()">&#10094;</button>
-        <button class="nav-btn next" id="btn-next-img" (click)="nextImage()">&#10095;</button>
+        <button 
+          class="nav-btn prev" 
+          id="btn-prev-img" 
+          (click)="prevImage()"
+          aria-label="Previous image">
+          &#10094;
+        </button>
+        <button 
+          class="nav-btn next" 
+          id="btn-next-img" 
+          (click)="nextImage()"
+          aria-label="Next image">
+          &#10095;
+        </button>
       </div>
 
+      <!-- Thumbnails -->
       <div class="thumbnail-list" id="thumb-container">
         @for (img of images; track $index) {
           <img 
@@ -19,83 +39,153 @@
             [class.active]="currentIndex === $index"
             [id]="'thumb-' + $index"
             (click)="setIndex($index)"
+            [attr.aria-label]="'Product image ' + ($index + 1)"
             class="thumb">
         }
       </div>
     </div>
 
+    <!-- Product Information -->
     <div class="product-info">
       <h1 class="title">{{productArr[3]}}</h1>
-      <div class="rating"><i class="fa-solid fa-star"></i><span>{{productArr[8]}}</span></div>
+      
+      <div class="rating">
+        <i class="fa-solid fa-star"></i>
+        <span>{{productArr[8]}} out of 5 stars</span>
+      </div>
 
       <div class="price">
         <span class="current">{{productArr[0]?.current}}{{productArr[0]?.currency}}</span>
         <span class="before">{{productArr[0]?.beforeDiscount}}{{productArr[0]?.currency}}</span>
-        <span style="padding-left: 10px; color: brown;" class="current">Stock: {{productArr[7]}}</span>
+        <span class="stock" [class.in-stock]="productArr[7] > 0" [class.out-of-stock]="productArr[7] <= 0">
+          {{productArr[7] > 0 ? 'In Stock' : 'Out of Stock'}}
+        </span>
       </div>
 
       <div class="actions">
-        <button (click)="addToCart()" class="cart-btn" [disabled]="productArr[7] <= 0">Add to Cart</button>
-        <button class="fav-btn"><i class="fa-solid fa-heart"></i></button>
+        <button 
+          class="cart-btn" 
+          (click)="addToCart()" 
+          [disabled]="productArr[7] <= 0"
+          aria-label="Add product to shopping cart">
+          <i class="fa-solid fa-shopping-cart"></i>
+          Add to Cart
+        </button>
+        <button 
+          class="fav-btn" 
+          aria-label="Add product to favorites"
+          title="Add to favorites">
+          <i class="fa-solid fa-heart"></i>
+        </button>
       </div>
 
       <p class="description">{{productArr[4]}}</p>
 
       <ul class="details">
-        <li>Shipping options</li>
-        <li>Warranty information </li>
-        <li>Payment and credit</li>
+        <li>Free shipping on orders over $50</li>
+        <li>2-year warranty included</li>
+        <li>Multiple payment options available</li>
       </ul>
     </div>
   </div>
 
+  <!-- Product Specifications -->
   <div class="specs">
     <h2>Product Details</h2>
     <table>
-      <tr><td>Model:</td><td>{{productArr[3]}}</td></tr>
-      <tr><td>Gender:</td><td>Unisex</td></tr>
-      <tr><td>Screen Type:</td><td>Super Retina XDR</td></tr>
-      <tr><td>Refresh Rate:</td><td>60 Hz</td></tr>
-      <tr><td>Diagonal:</td><td>6.1"</td></tr>
-      <tr><td>Resolution:</td><td>2532×1170</td></tr>
-      <tr><td>Matrix Type:</td><td>OLED Display Retina XDR</td></tr>
-      <tr><td>Touch Points:</td><td>10</td></tr>
+      <tbody>
+        <tr>
+          <td>Model</td>
+          <td>{{productArr[3]}}</td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td>Unisex</td>
+        </tr>
+        <tr>
+          <td>Screen Type</td>
+          <td>Super Retina XDR</td>
+        </tr>
+        <tr>
+          <td>Refresh Rate</td>
+          <td>60 Hz</td>
+        </tr>
+        <tr>
+          <td>Diagonal</td>
+          <td>6.1"</td>
+        </tr>
+        <tr>
+          <td>Resolution</td>
+          <td>2532×1170</td>
+        </tr>
+        <tr>
+          <td>Matrix Type</td>
+          <td>OLED Display Retina XDR</td>
+        </tr>
+        <tr>
+          <td>Touch Points</td>
+          <td>10</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 
+  <!-- Reviews Section -->
   <div class="reviews">
     <h2>Ratings & Reviews</h2>
-    <div class="average">Average rating: <strong>3.625</strong></div>
+    
+    <div class="average">
+      Average rating: <strong> 3.625 </strong>
+    </div>
     
     @for (item of ratingsArr; track $index) {
       <div class="review">
         <div class="review-header">
-          <h3>{{ quotesArr[$index]?.author}}</h3>
-          <span class="review-date">{{ item.createdAt | date:'longDate' }}</span>
+          <h3>{{ quotesArr[$index]?.author }}</h3>
+          <span class="review-date">{{ item.createdAt | date:'MMM d, y' }}</span>
         </div>
 
-        <div class="stars">{{ getStars(item.value) }}{{item.value}}.0</div>
+        <div class="stars">
+          {{ getStars(item.value) }}
+          <span>{{item.value}}.0</span>
+        </div>
 
-        <p>{{ quotesArr[$index]?.quote}}</p>
+        <p>{{ quotesArr[$index]?.quote }}</p>
       </div>
     }
     
-    <button class="review-btn" (click)="openReviewPopup()">Leave a Review</button>
+    <button 
+      class="review-btn" 
+      (click)="openReviewPopup()"
+      aria-label="Write a product review">
+      <i class="fa-solid fa-pen-to-square"></i>
+      Leave a Review
+    </button>
   </div>
 </div>
 
+<!-- Review Submission Modal -->
 @if (isReviewPopupOpen) {
-  <div class="review-overlay" (click)="closeReviewPopup()">
+  <div class="review-overlay" (click)="closeReviewPopup()" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
     <div class="review-modal" (click)="$event.stopPropagation()">
       <div class="modal-header">
-        <h3>Submit Review</h3>
-        <button class="close-btn" (click)="closeReviewPopup()">&times;</button>
+        <h3 id="review-modal-title">Submit Your Review</h3>
+        <button 
+          class="close-btn" 
+          (click)="closeReviewPopup()"
+          aria-label="Close review modal">
+          &times;
+        </button>
       </div>
 
       <div class="modal-body">
         <div class="input-group">
-          <label>Category</label>
-          <select [(ngModel)]="reviewData.category" class="glass-select">
+          <label for="review-category">Category</label>
+          <select 
+            id="review-category"
+            [(ngModel)]="reviewData.category" 
+            class="glass-select"
+            aria-label="Select review category">
             <option value="Game">Game</option>
             <option value="Series">Series</option>
             <option value="Movie">Movie</option>
@@ -103,14 +193,30 @@
         </div>
 
         <div class="input-group">
-          <label>Your Thoughts</label>
-          <textarea [(ngModel)]="reviewData.comment" placeholder="Write your review here..." rows="4" class="glass-textarea"></textarea>
+          <label for="review-comment">Your Thoughts</label>
+          <textarea 
+            id="review-comment"
+            [(ngModel)]="reviewData.comment" 
+            placeholder="Share your experience with this product..."
+            rows="4" 
+            class="glass-textarea"
+            aria-label="Write your review"></textarea>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button class="cancel-btn" (click)="closeReviewPopup()">Cancel</button>
-        <button class="submit-btn" (click)="submitReview()">Post Review</button>
+        <button 
+          class="cancel-btn" 
+          (click)="closeReviewPopup()"
+          aria-label="Cancel review submission">
+          Cancel
+        </button>
+        <button 
+          class="submit-btn" 
+          (click)="submitReview()"
+          aria-label="Post your review">
+          Post Review
+        </button>
       </div>
     </div>
   </div>

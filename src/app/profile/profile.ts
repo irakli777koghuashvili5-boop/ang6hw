@@ -140,6 +140,7 @@ checkOut(){
     }),
     error: (err => console.log(err))
   })
+
 }
 
   logOutFn() {

@@ -1,17 +1,50 @@
 @if (alertOpen) {
-  <div class="alertBody" (click)="closeAlert()">
+  <div 
+    class="alertBody" 
+    (click)="closeAlert()"
+    role="alert"
+    aria-label="Alert notification">
 
-    <div class="alertText" (click)="$event.stopPropagation()">
+    <div 
+      class="alertText" 
+      (click)="$event.stopPropagation()">
 
       <div class="alertTop">
-        <h2>Alert</h2>
+        <div class="alertIcon">
 
-        <button class="alertClose" (click)="closeAlert()">×</button>
+        </div>
+
+
+        <button 
+          class="alertClose" 
+          (click)="closeAlert()"
+          aria-label="Close alert"
+          title="Close">
+          ×
+        </button>
       </div>
 
       <div class="alertMiddle">
         <p>{{ message }}</p>
       </div>
+
+      <!-- Optional: Action buttons -->
+
+        <div class="alertActions">
+          <button 
+            class="btn-secondary" 
+            (click)="closeAlert()"
+            aria-label="Cancel">
+            Cancel
+          </button>
+          <button 
+            class="btn-primary" 
+            (click)="closeAlert()"
+            aria-label="Confirm">
+            Confirm
+          </button>
+        </div>
+      
 
     </div>
 

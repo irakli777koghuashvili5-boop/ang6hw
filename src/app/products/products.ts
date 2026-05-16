@@ -27,10 +27,13 @@ export class Products {
         },
         error: (err) => {
           console.error(err);
-          if(err.status === 401 || err.status === 400){
-            this.api.show("Log In First")
-            this.router.navigateByUrl('/sign-in')
-          }
+          if(localStorage.getItem('access_token') === null || localStorage.getItem('access_token') === undefined){
+            this.api.show(err.error.error ? "log In First" : err.error.message)
+            this.router.navigateByUrl('/sign-in'
+            )}
+            else{
+              this.router.navigateByUrl('/details?id=' + id)
+            }
         },
       });
   }
